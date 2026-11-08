@@ -82,3 +82,19 @@ export async function createBudgetFromRequest(id: string) {
   if (r.status === "new" || r.status === "contacted") await supabase.from("quote_requests").update({ status: "quoted" }).eq("id", id);
   redirect(`/admin/presupuestos/${b!.id}`);
 }
+
+export async function updateProject(id: string, form: FormData) {
+  const supabase = await db();
+  await supabase.from("projects").update({ title: str(form, "title", 200) ?? "Proyecto", status: String(form.get("status")), notes: str(form, "notes") }).eq("id", id);
+  revalidatePath(`/admin/proyectos/${id}`);
+}
+
+type Item = { description: string; quantity: number; unit: string; unit_price: number };
+export async function saveBudget(id: string, meta: { title: string; status: string; tax_rate: number; notes: string }, items: Item[]) {
+  const supabase = await db();
+  await supabase.from("budgets").update({ title: meta.title.slice(0, 200), status: meta.status, tax_rate: Number(meta.tax_rate) || 0, notes: meta.notes.slice(0, 4000) }).eq("id", id);
+  await supabase.from("budget_items").delete().eq("budget_id", id);
+  const rows = items.filter((i) => i.description.trim()).map((i, position) => ({ budget_id: id, position, description: i.description.slice(0, 500), quantity: Number(i.quantity) || 0, unit: i.unit.slice(0, 20), unit_price: Number(i.unit_price) || 0 }));
+  if (rows.length) await supabase.from("budget_items").insert(rows);
+  revalidatePath(`/admin/presupuestos/${id}`);
+}

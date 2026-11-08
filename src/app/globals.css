@@ -183,3 +183,9 @@ body {
   background: var(--color-charcoal);
   color: var(--color-ivory);
 }
+
+@media print {
+  aside, .print\:hidden { display: none !important; }
+  main { padding: 0 !important; }
+  body { background: #fff; }
+}
