@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { type QuoteInput, validateQuote } from "@/lib/quote";
 import { site } from "@/lib/site";
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import { clientQuoteEmail, internalQuoteEmail, type QuoteRow } from "@/lib/emails";
+import { QUOTE_BUCKET, supabaseAdmin } from "@/lib/supabase-admin";
 
 const clip = (v: unknown, n: number) => (typeof v === "string" ? v.trim().slice(0, n) : "");
 
@@ -51,11 +52,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "provider_error" }, { status: 502 });
   }
 
-  await notify(row, data.id).catch((e) => console.error("[quote] notify failed", e));
+  await notify(supabase, row as QuoteRow, data.id).catch((e) => console.error("[quote] notify failed", e));
   return NextResponse.json({ ok: true, id: data.id });
 }
 
-async function notify(row: Record<string, unknown>, id: string) {
+async function notify(supabase: NonNullable<ReturnType<typeof supabaseAdmin>>, row: QuoteRow, id: string) {
   const apiKey = process.env.BREVO_API_KEY;
   if (!apiKey) return;
   const sender = { name: "Nina Marquina", email: process.env.BREVO_SENDER_EMAIL ?? site.email };
@@ -65,10 +66,15 @@ async function notify(row: Record<string, unknown>, id: string) {
     .map((e) => e.trim())
     .filter(Boolean)
     .map((email) => ({ email }));
-  const lines = Object.entries(row)
-    .filter(([, v]) => v !== null && v !== "" && !(Array.isArray(v) && v.length === 0))
-    .map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0;color:#5E5851">${k}</td><td>${escape(Array.isArray(v) ? v.join(", ") : String(v))}</td></tr>`)
-    .join("");
+
+  let fileUrls: { name: string; url: string }[] = [];
+  if (row.files.length) {
+    const { data } = await supabase.storage.from(QUOTE_BUCKET).createSignedUrls(row.files, 60 * 60 * 24 * 7);
+    fileUrls = (data ?? [])
+      .filter((f) => f.signedUrl)
+      .map((f, i) => ({ name: `Archivo ${String(i + 1).padStart(2, "0")} · ${f.path?.split(".").pop()?.toUpperCase()}`, url: f.signedUrl as string }));
+  }
+
   const send = async (body: object) => {
     const res = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
@@ -77,25 +83,24 @@ async function notify(row: Record<string, unknown>, id: string) {
     });
     if (!res.ok) console.error("[quote] brevo error", res.status, await res.text());
   };
-  const es = row.locale !== "en";
+
+  const internal = internalQuoteEmail(row, id, fileUrls);
+  const client = clientQuoteEmail(row);
   await Promise.all([
     send({
       to: [{ email: to }],
       ...(cc.length ? { cc } : {}),
       replyTo: { email: row.email, name: row.name },
-      subject: `Nueva solicitud de cotización — ${row.name} (${row.service})`,
-      htmlContent: `<p>Nueva solicitud <b>${id}</b></p><table>${lines}</table>`,
+      subject: internal.subject,
+      htmlContent: internal.html,
+      tags: ["quote-internal"],
     }),
     send({
       to: [{ email: row.email, name: row.name }],
-      subject: es ? "Hemos recibido tu solicitud — Nina Marquina" : "We've received your request — Nina Marquina",
-      htmlContent: es
-        ? `<p>Hola ${escape(String(row.name))},</p><p>Gracias por contarnos tu proyecto. Stephany revisará tu solicitud y te contactará en menos de 48 horas.</p><p>Nina Marquina — Architecture &amp; Interiors</p>`
-        : `<p>Hi ${escape(String(row.name))},</p><p>Thank you for telling us about your project. Stephany will review your request and get back to you within 48 hours.</p><p>Nina Marquina — Architecture &amp; Interiors</p>`,
+      replyTo: { email: site.email, name: "Nina Marquina" },
+      subject: client.subject,
+      htmlContent: client.html,
+      tags: ["quote-client"],
     }),
   ]);
-}
-
-function escape(s: string) {
-  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 }
