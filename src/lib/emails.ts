@@ -246,3 +246,23 @@ export function loginEmail(link: string) {
     }),
   };
 }
+
+export function budgetEmail(b: { name: string; title: string; number: number; total: string; url: string }) {
+  const first = esc(b.name.split(" ")[0]);
+  const body = `<p style="margin:0;font-size:15px;line-height:1.75;color:${C.muted}">Hola ${first}, gracias por confiar en nosotros. Te compartimos la propuesta para <b style="color:${C.charcoal}">${esc(b.title)}</b>. Puedes verla completa y descargarla en PDF desde el enlace.</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:28px;background:${C.sand}"><tr><td style="padding:24px 26px">
+<div style="font-family:${SANS};font-size:10px;letter-spacing:2.4px;text-transform:uppercase;color:${C.muted}">Presupuesto #${b.number}</div>
+<div style="font-family:${SERIF};font-size:34px;line-height:1.1;margin-top:8px;color:${C.charcoal}">${esc(b.total)}</div>
+</td></tr></table>
+<div style="margin-top:30px">${button(b.url, "Ver presupuesto", C.charcoal)}</div>
+<p style="margin-top:26px;font-size:13px;line-height:1.7;color:${C.muted}">Si tienes cualquier duda, responde a este email o escríbenos por WhatsApp. Estaremos encantadas de ajustarlo contigo.</p>`;
+  return {
+    subject: `Tu presupuesto · ${b.title} — Nina Marquina`,
+    html: layout({
+      preheader: `Presupuesto #${b.number} · ${b.total}`,
+      hero: `<tr><td style="padding:36px 40px 0"><div style="font-family:${SANS};font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:${C.clay}">Propuesta</div><div style="font-family:${SERIF};font-size:38px;line-height:1.1;margin-top:12px;color:${C.charcoal}">Tu <i>presupuesto</i>.</div></td></tr>`,
+      body,
+      footerNote: "Recibes este email porque solicitaste una propuesta a Nina Marquina.",
+    }),
+  };
+}

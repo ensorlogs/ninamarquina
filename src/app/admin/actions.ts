@@ -5,6 +5,9 @@ import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/admin-auth";
 import { REQUEST_STATUS } from "@/lib/admin-labels";
 import { opt } from "@/lib/admin-labels";
+import { budgetEmail } from "@/lib/emails";
+import { budgetUrl } from "@/lib/budget";
+import { site } from "@/lib/site";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import { supabaseServer } from "@/lib/supabase-server";
 
@@ -97,4 +100,61 @@ export async function saveBudget(id: string, meta: { title: string; status: stri
   const rows = items.filter((i) => i.description.trim()).map((i, position) => ({ budget_id: id, position, description: i.description.slice(0, 500), quantity: Number(i.quantity) || 0, unit: i.unit.slice(0, 20), unit_price: Number(i.unit_price) || 0 }));
   if (rows.length) await supabase.from("budget_items").insert(rows);
   revalidatePath(`/admin/presupuestos/${id}`);
+}
+
+export async function createBudget(form: FormData) {
+  const supabase = await db();
+  let clientId = str(form, "client_id", 60);
+  if (!clientId) {
+    const name = str(form, "name", 200);
+    if (!name) return;
+    const { data } = await supabase
+      .from("clients")
+      .insert({ name, email: str(form, "email", 200), phone: str(form, "phone", 40), location: str(form, "location", 200) })
+      .select("id")
+      .single();
+    clientId = data!.id;
+  }
+  const { data: b } = await supabase
+    .from("budgets")
+    .insert({ client_id: clientId, title: str(form, "title", 200) ?? "Presupuesto" })
+    .select("id")
+    .single();
+  await supabase.from("budget_items").insert({ budget_id: b!.id, position: 0, description: "", quantity: 1, unit: "global", unit_price: 0 });
+  redirect(`/admin/presupuestos/${b!.id}`);
+}
+
+export async function markBudgetSent(id: string) {
+  const supabase = await db();
+  await supabase.from("budgets").update({ status: "sent", sent_at: new Date().toISOString() }).eq("id", id).eq("status", "draft");
+  revalidatePath(`/admin/presupuestos/${id}`);
+}
+
+export async function sendBudgetEmail(id: string) {
+  const supabase = await db();
+  const { data: b } = await supabase.from("budgets").select("*, clients(name,email), budget_items(quantity,unit_price)").eq("id", id).single();
+  const apiKey = process.env.BREVO_API_KEY;
+  if (!b?.clients?.email || !apiKey) return { ok: false, error: !apiKey ? "Brevo no configurado" : "El cliente no tiene email" };
+  const sub = b.budget_items.reduce((s: number, i: { quantity: number; unit_price: number }) => s + i.quantity * i.unit_price, 0);
+  const total = (sub * (1 + Number(b.tax_rate) / 100)).toLocaleString("es-VE", { style: "currency", currency: b.currency });
+  const mail = budgetEmail({ name: b.clients.name, title: b.title, number: b.number, total, url: budgetUrl(b.share_token) });
+  const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: { "api-key": apiKey, "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      sender: { name: "Nina Marquina", email: process.env.BREVO_SENDER_EMAIL ?? site.email },
+      to: [{ email: b.clients.email, name: b.clients.name }],
+      cc: (process.env.QUOTE_NOTIFY_CC ?? "").split(",").map((e) => e.trim()).filter(Boolean).map((email) => ({ email })),
+      replyTo: { email: site.email, name: "Nina Marquina" },
+      subject: mail.subject,
+      htmlContent: mail.html,
+      tags: ["budget"],
+    }),
+  });
+  if (!res.ok) {
+    console.error("[budget-email] brevo error", res.status, await res.text());
+    return { ok: false, error: "Brevo rechazó el envío" };
+  }
+  await markBudgetSent(id);
+  return { ok: true };
 }

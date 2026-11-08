@@ -185,7 +185,7 @@ body {
 }
 
 @media print {
-  aside, .print\:hidden { display: none !important; }
+  aside, header.fixed, footer, .print\:hidden, [aria-label="WhatsApp"] { display: none !important; }
   main { padding: 0 !important; }
   body { background: #fff; }
 }

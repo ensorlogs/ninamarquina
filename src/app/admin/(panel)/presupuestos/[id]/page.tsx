@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BudgetEditor } from "@/components/admin/BudgetEditor";
+import { budgetUrl } from "@/lib/budget";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
 export default async function Budget({ params }: { params: Promise<{ id: string }> }) {
@@ -11,7 +12,7 @@ export default async function Budget({ params }: { params: Promise<{ id: string 
   return (
     <>
       <Link href="/admin/presupuestos" className="label text-muted hover:text-charcoal print:hidden">← Presupuestos</Link>
-      <BudgetEditor budget={b} />
+      <BudgetEditor budget={{ ...b, shareUrl: budgetUrl(b.share_token) }} />
     </>
   );
 }

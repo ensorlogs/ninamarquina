@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { saveBudget } from "@/app/admin/actions";
+import { markBudgetSent, saveBudget, sendBudgetEmail } from "@/app/admin/actions";
 import { BUDGET_STATUS } from "@/lib/admin-labels";
 
 type Item = { description: string; quantity: number; unit: string; unit_price: number };
 type Budget = {
   id: string;
   number: number;
+  shareUrl: string;
   created_at: string;
   title: string;
   status: string;
@@ -23,6 +24,25 @@ export function BudgetEditor({ budget }: { budget: Budget }) {
   const [items, setItems] = useState<Item[]>(budget.budget_items.map(({ description, quantity, unit, unit_price }) => ({ description, quantity: Number(quantity), unit: unit ?? "", unit_price: Number(unit_price) })));
   const [pending, start] = useTransition();
   const [saved, setSaved] = useState(false);
+  const [notice, setNotice] = useState("");
+  const persist = () => saveBudget(budget.id, meta, items);
+  const sendEmail = () =>
+    start(async () => {
+      await persist();
+      const r = await sendBudgetEmail(budget.id);
+      setMeta((m) => ({ ...m, status: r.ok && m.status === "draft" ? "sent" : m.status }));
+      setNotice(r.ok ? `Enviado a ${budget.clients?.email}` : (r.error ?? "Error"));
+    });
+  const sendWhatsApp = () => {
+    const phone = (budget.clients?.phone ?? "").replace(/\D/g, "");
+    const text = `Hola ${budget.clients?.name.split(" ")[0] ?? ""}, te comparto el presupuesto #${budget.number} · ${meta.title}: ${budget.shareUrl}\n\nNina Marquina · Architecture & Interiors`;
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, "_blank");
+    start(async () => {
+      await persist();
+      await markBudgetSent(budget.id);
+      setMeta((m) => ({ ...m, status: m.status === "draft" ? "sent" : m.status }));
+    });
+  };
   const money = (n: number) => n.toLocaleString("es-VE", { style: "currency", currency: budget.currency });
   const sub = items.reduce((s, i) => s + i.quantity * i.unit_price, 0);
   const tax = (sub * meta.tax_rate) / 100;
@@ -38,7 +58,10 @@ export function BudgetEditor({ budget }: { budget: Budget }) {
         <select value={meta.status} onChange={(e) => setMeta({ ...meta, status: e.target.value })} className="pill">
           {Object.entries(BUDGET_STATUS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
         </select>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
+          <button disabled={pending || !budget.clients?.email} onClick={sendEmail} className="bg-clay px-5 py-2.5 text-[11px] uppercase tracking-[0.16em] text-ivory disabled:opacity-50">Enviar por email</button>
+          <button disabled={pending} onClick={sendWhatsApp} className="bg-[#25D366] px-5 py-2.5 text-[11px] uppercase tracking-[0.16em] text-charcoal disabled:opacity-50">Enviar por WhatsApp</button>
+          <button onClick={() => { navigator.clipboard.writeText(budget.shareUrl); setNotice("Enlace copiado"); }} className="border border-charcoal px-5 py-2.5 text-[11px] uppercase tracking-[0.16em]">Copiar enlace</button>
           <button onClick={() => window.print()} className="border border-charcoal px-5 py-2.5 text-[11px] uppercase tracking-[0.16em]">Descargar PDF</button>
           <button disabled={pending} onClick={() => start(async () => { await saveBudget(budget.id, meta, items); setSaved(true); })} className="bg-charcoal px-5 py-2.5 text-[11px] uppercase tracking-[0.16em] text-ivory hover:bg-clay disabled:opacity-60">
             {pending ? "Guardando…" : saved ? "Guardado ✓" : "Guardar"}
@@ -46,6 +69,7 @@ export function BudgetEditor({ budget }: { budget: Budget }) {
         </div>
       </div>
 
+      {notice && <p className="mt-4 text-[13px] text-clay print:hidden">{notice}</p>}
       <article className="mt-6 bg-white p-6 md:p-12 print:m-0 print:p-0">
         <header className="flex flex-wrap justify-between gap-6 border-b border-black/10 pb-8">
           <div>

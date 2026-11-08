@@ -7,7 +7,10 @@ export default async function Budgets() {
   return (
     <>
       <p className="label text-muted">Ventas</p>
-      <h1 className="display mt-3 text-[40px]">Presupuestos</h1>
+      <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
+        <h1 className="display text-[40px]">Presupuestos</h1>
+        <Link href="/admin/presupuestos/nuevo" className="bg-charcoal px-6 py-3 text-[11px] uppercase tracking-[0.16em] text-ivory hover:bg-clay">+ Nuevo presupuesto</Link>
+      </div>
       <div className="mt-8 divide-y divide-black/10 border-y border-black/10">
         {(data ?? []).map((b) => {
           const sub = b.budget_items.reduce((s: number, i: { quantity: number; unit_price: number }) => s + i.quantity * i.unit_price, 0);
@@ -22,7 +25,7 @@ export default async function Budgets() {
             </Link>
           );
         })}
-        {!data?.length && <p className="py-6 text-[14px] text-muted">Crea uno desde una solicitud.</p>}
+        {!data?.length && <p className="py-6 text-[14px] text-muted">Crea uno nuevo o desde una solicitud.</p>}
       </div>
     </>
   );
