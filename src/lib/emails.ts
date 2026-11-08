@@ -231,3 +231,18 @@ ${section(t.summary, [
     }),
   };
 }
+
+export function loginEmail(link: string) {
+  const body = `<p style="margin:0;font-size:15px;line-height:1.75;color:${C.muted}">Pulsa el botón para entrar al panel de Nina Marquina. El enlace es personal, sirve una sola vez y caduca en 1 hora.</p>
+<div style="margin-top:30px">${button(link, "Entrar al panel", C.clay)}</div>
+<p style="margin-top:28px;font-size:12px;color:${C.muted}">Si no lo has pedido tú, ignora este email.</p>`;
+  return {
+    subject: "Tu acceso al panel — Nina Marquina",
+    html: layout({
+      preheader: "Enlace de acceso al panel",
+      hero: `<tr><td style="padding:36px 40px 0"><div style="font-family:${SANS};font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:${C.clay}">Panel</div><div style="font-family:${SERIF};font-size:36px;line-height:1.1;margin-top:12px">Tu enlace de <i>acceso</i>.</div></td></tr>`,
+      body,
+      footerNote: "Email de acceso al panel interno.",
+    }),
+  };
+}
