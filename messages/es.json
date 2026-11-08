@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "title": "Nina Marquina — Arquitectura e Interiorismo en El Hatillo, Caracas",
+    "description": "Estudio boutique de arquitectura, interiorismo, rehabilitación colonial y reformas de alto nivel en El Hatillo, Caracas, con proyectos en Madrid y Punta Cana.",
+    "keywords": "Arquitectura en El Hatillo, Interiorismo Caracas, Rehabilitación colonial, Arquitecta en Venezuela, Diseño de cocinas y walk-in closets, Interiorismo Madrid, Arquitectura Punta Cana"
+  },
+  "nav": {
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "studio": "Estudio",
+    "services": "Servicios",
+    "journal": "Journal",
+    "contact": "Contacto",
+    "menu": "Menú",
+    "close": "Cerrar"
+  },
+  "hero": {
+    "eyebrow": "Nina Marquina",
+    "title": "Diseñar para la vida que sucede <em>después</em>.",
+    "tagline": "Architecture & Interiors",
+    "discover": "Descubrir"
+  },
+  "philosophy": {
+    "label": "Nuestra filosofía",
+    "title": "Los espacios adquieren sentido cuando comienzan <em>a ser habitados</em>.",
+    "body": "Entendemos la arquitectura como una forma de conectar personas, lugares e historias. Diseñamos espacios sostenibles y sensibles al clima, que permanecen, evolucionan y encuentran su verdadera identidad en quienes los viven.",
+    "link": "Nuestra mirada",
+    "imageAlt": "Tinaja de barro con olivo junto a una puerta de madera"
+  },
+  "projects": {
+    "label": "Proyectos destacados",
+    "viewAll": "Ver todos los proyectos",
+    "items": {
+      "roast-room": {
+        "title": "The Roast Room",
+        "meta": "Madrid · Arquitectura comercial e interiorismo",
+        "alt": "Interior de cafetería con barra de mármol y butacas de terciopelo"
+      },
+      "casa-patio": {
+        "title": "Casa Patio — El Hatillo",
+        "meta": "El Hatillo · Rehabilitación colonial y sostenible",
+        "alt": "Casa colonial rehabilitada con piscina y corredor de madera"
+      }
+    }
+  },
+  "beforeAfter": {
+    "label": "Transformaciones",
+    "title": "Recuperar lo valioso, <em>habitarlo de nuevo</em>.",
+    "body": "Desliza para comparar el estado original de una casa colonial en El Hatillo con su rehabilitación final.",
+    "before": "Antes",
+    "after": "Después",
+    "handle": "Arrastra para comparar antes y después",
+    "beforeAlt": "Salón colonial antes de la rehabilitación, con muros deteriorados",
+    "afterAlt": "Salón colonial rehabilitado con vigas de madera y suelo de barro"
+  },
+  "mirada": {
+    "label": "Mirada",
+    "title": "Hay lugares que merecen una <em>nueva historia</em>.",
+    "body": "Nos interesa la arquitectura que sabe mirar hacia atrás sin dejar de avanzar. Recuperar lo valioso, reinterpretar lo existente y crear nuevas formas de habitar con un diseño consciente.",
+    "link": "Explorar nuestra mirada",
+    "imageAlt": "Banco de piedra y puerta antigua de madera en una casa colonial"
+  },
+  "studio": {
+    "label": "El estudio",
+    "title": "Una práctica personal de la arquitectura.",
+    "body": "Nina Marquina, arquitecta e ingeniera civil, lidera un estudio que aborda cada proyecto desde la sensibilidad por el lugar, la materia y las personas que lo habitan: sostenibilidad, reformas de alto nivel y diseño a medida de cocinas, walk-in closets y mobiliario.",
+    "link": "Conocer el estudio",
+    "image1Alt": "Planos arquitectónicos y muestras de materiales sobre un escritorio",
+    "image2Alt": "Estantería de madera con libros y un olivo en maceta"
+  },
+  "journal": {
+    "label": "Journal / News",
+    "viewAll": "Ver todo el journal",
+    "storiesLabel": "Stories de obra",
+    "storiesHint": "Procesos, materiales y obra en tiempo real",
+    "close": "Cerrar",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "posts": [
+      {
+        "slug": "cocinas-a-medida",
+        "category": "Diseño a medida",
+        "date": "Oct 2026",
+        "title": "Cocinas que se piensan desde la vida diaria",
+        "image": "/images/journal-cocina.jpg",
+        "alt": "Cocina a medida con isla de travertino y madera de nogal"
+      },
+      {
+        "slug": "walk-in-closets",
+        "category": "Interiorismo",
+        "date": "Sep 2026",
+        "title": "El walk-in closet como espacio de calma",
+        "image": "/images/journal-closet.jpg",
+        "alt": "Walk-in closet de nogal con isla de travertino"
+      },
+      {
+        "slug": "rehabilitacion-sostenible",
+        "category": "Sostenibilidad",
+        "date": "Ago 2026",
+        "title": "Rehabilitar con cal, barro y madera recuperada",
+        "image": "/images/journal-sostenible.jpg",
+        "alt": "Obra de rehabilitación con tejas y vigas recuperadas"
+      }
+    ],
+    "stories": [
+      { "title": "Revoco de cal", "image": "/images/story-1.jpg" },
+      { "title": "Materiales", "image": "/images/story-2.jpg" },
+      { "title": "Cubierta nueva", "image": "/images/story-3.jpg" },
+      { "title": "Carpintería", "image": "/images/story-4.jpg" }
+    ]
+  },
+  "newsletter": {
+    "label": "Newsletter",
+    "title": "Ideas sobre arquitectura, materia y <em>lugar</em>.",
+    "body": "Una carta ocasional con proyectos, procesos de obra y reflexiones del estudio. Sin ruido.",
+    "placeholder": "Tu correo electrónico",
+    "submit": "Suscribirme",
+    "sending": "Enviando…",
+    "success": "Gracias. Te hemos añadido a nuestra lista.",
+    "error": "No pudimos completar la suscripción. Inténtalo de nuevo.",
+    "invalid": "Introduce un correo válido.",
+    "consent": "Al suscribirte aceptas recibir correos de Nina Marquina. Puedes darte de baja cuando quieras."
+  },
+  "cta": {
+    "label": "¿Tienes un proyecto en mente?",
+    "title": "Las buenas historias también comienzan con un <em>espacio</em>.",
+    "button": "Hablemos",
+    "whatsapp": "WhatsApp",
+    "whatsappMessage": "Hola Nina, me gustaría hablar sobre un proyecto."
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  },
+  "whatsapp": {
+    "label": "Escríbenos por WhatsApp"
+  }
+}

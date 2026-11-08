@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "title": "Nina Marquina — Architecture & Interiors in El Hatillo, Caracas",
+    "description": "Boutique architecture and interior design studio specialising in colonial restoration, sustainable design and high-end renovations in El Hatillo, Caracas, with projects in Madrid and Punta Cana.",
+    "keywords": "Architect in Caracas, Interior design Caracas, Colonial restoration Venezuela, Architect in Venezuela, Custom kitchens and walk-in closets, Interior design Madrid, Architecture Punta Cana"
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "studio": "Studio",
+    "services": "Services",
+    "journal": "Journal",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "hero": {
+    "eyebrow": "Nina Marquina",
+    "title": "Designing for the life that happens <em>after</em>.",
+    "tagline": "Architecture & Interiors",
+    "discover": "Discover"
+  },
+  "philosophy": {
+    "label": "Our philosophy",
+    "title": "Spaces take on meaning when they begin <em>to be lived in</em>.",
+    "body": "We understand architecture as a way of connecting people, places and stories. We design sustainable, climate-sensitive spaces that endure, evolve and find their true identity in the people who live in them.",
+    "link": "Our perspective",
+    "imageAlt": "Clay amphora with an olive tree beside a wooden door"
+  },
+  "projects": {
+    "label": "Featured projects",
+    "viewAll": "View all projects",
+    "items": {
+      "roast-room": {
+        "title": "The Roast Room",
+        "meta": "Madrid · Commercial architecture & interiors",
+        "alt": "Coffee shop interior with marble bar and velvet armchairs"
+      },
+      "casa-patio": {
+        "title": "Casa Patio — El Hatillo",
+        "meta": "El Hatillo · Sustainable colonial restoration",
+        "alt": "Restored colonial house with pool and timber porch"
+      }
+    }
+  },
+  "beforeAfter": {
+    "label": "Transformations",
+    "title": "Recovering what matters, <em>living in it again</em>.",
+    "body": "Drag to compare the original state of a colonial house in El Hatillo with its final restoration.",
+    "before": "Before",
+    "after": "After",
+    "handle": "Drag to compare before and after",
+    "beforeAlt": "Colonial living room before restoration, with deteriorated walls",
+    "afterAlt": "Restored colonial living room with timber beams and terracotta floor"
+  },
+  "mirada": {
+    "label": "Perspective",
+    "title": "Some places deserve a <em>new story</em>.",
+    "body": "We are drawn to architecture that knows how to look back while moving forward. Recovering what is valuable, reinterpreting what exists and creating new ways of living through conscious design.",
+    "link": "Explore our perspective",
+    "imageAlt": "Stone bench and antique wooden door in a colonial house"
+  },
+  "studio": {
+    "label": "The studio",
+    "title": "A personal practice of architecture.",
+    "body": "Nina Marquina, architect and civil engineer, leads a studio that approaches every project with sensitivity to place, material and the people who inhabit it: sustainability, high-end renovations and bespoke design of kitchens, walk-in closets and furniture.",
+    "link": "Meet the studio",
+    "image1Alt": "Architectural plans and material samples on a desk",
+    "image2Alt": "Wooden shelf with books and a potted olive tree"
+  },
+  "journal": {
+    "label": "Journal / News",
+    "viewAll": "View the full journal",
+    "storiesLabel": "Site stories",
+    "storiesHint": "Processes, materials and construction in real time",
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next",
+    "posts": [
+      {
+        "slug": "cocinas-a-medida",
+        "category": "Bespoke design",
+        "date": "Oct 2026",
+        "title": "Kitchens designed around everyday life",
+        "image": "/images/journal-cocina.jpg",
+        "alt": "Bespoke kitchen with travertine island and walnut cabinetry"
+      },
+      {
+        "slug": "walk-in-closets",
+        "category": "Interiors",
+        "date": "Sep 2026",
+        "title": "The walk-in closet as a space of calm",
+        "image": "/images/journal-closet.jpg",
+        "alt": "Walnut walk-in closet with travertine island"
+      },
+      {
+        "slug": "rehabilitacion-sostenible",
+        "category": "Sustainability",
+        "date": "Aug 2026",
+        "title": "Restoring with lime, earth and reclaimed timber",
+        "image": "/images/journal-sostenible.jpg",
+        "alt": "Restoration site with reclaimed roof tiles and beams"
+      }
+    ],
+    "stories": [
+      { "title": "Lime plaster", "image": "/images/story-1.jpg" },
+      { "title": "Materials", "image": "/images/story-2.jpg" },
+      { "title": "New roof", "image": "/images/story-3.jpg" },
+      { "title": "Joinery", "image": "/images/story-4.jpg" }
+    ]
+  },
+  "newsletter": {
+    "label": "Newsletter",
+    "title": "Ideas on architecture, material and <em>place</em>.",
+    "body": "An occasional letter with projects, site processes and reflections from the studio. No noise.",
+    "placeholder": "Your email address",
+    "submit": "Subscribe",
+    "sending": "Sending…",
+    "success": "Thank you. You have been added to our list.",
+    "error": "We couldn't complete your subscription. Please try again.",
+    "invalid": "Please enter a valid email.",
+    "consent": "By subscribing you agree to receive emails from Nina Marquina. You can unsubscribe at any time."
+  },
+  "cta": {
+    "label": "Have a project in mind?",
+    "title": "Good stories also begin with a <em>space</em>.",
+    "button": "Let's talk",
+    "whatsapp": "WhatsApp",
+    "whatsappMessage": "Hi Nina, I'd like to talk about a project."
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "whatsapp": {
+    "label": "Message us on WhatsApp"
+  }
+}
