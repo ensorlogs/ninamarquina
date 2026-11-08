@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { Arrow } from "../ui/Arrow";
 
 export async function Hero() {
@@ -17,6 +18,12 @@ export async function Hero() {
             {t.rich("title", { em: (c) => <em>{c}</em> })}
           </h1>
           <p className="label mt-8 text-white/85">{t("tagline")}</p>
+          <Link
+            href="/cotizar"
+            className="link-arrow mt-10 border border-white/60 px-8 py-4 text-white backdrop-blur-[2px] transition-colors hover:border-white hover:bg-white hover:text-charcoal"
+          >
+            {t("cta")} <Arrow className="arrow" />
+          </Link>
         </div>
 
         <a

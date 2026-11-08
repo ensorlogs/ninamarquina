@@ -12,13 +12,15 @@
     "journal": "Journal",
     "contact": "Contact",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Close",
+    "quote": "Get a quote"
   },
   "hero": {
     "eyebrow": "Nina Marquina",
     "title": "Designing for the life that happens <em>after</em>.",
     "tagline": "Architecture & Interiors",
-    "discover": "Discover"
+    "discover": "Discover",
+    "cta": "Get a quote"
   },
   "philosophy": {
     "label": "Our philosophy",
@@ -102,7 +104,8 @@
     "title": "Good stories also begin with a <em>space</em>.",
     "button": "Let's talk",
     "whatsapp": "WhatsApp",
-    "whatsappMessage": "Hi Nina, I'd like to talk about a project."
+    "whatsappMessage": "Hi Nina, I'd like to talk about a project.",
+    "quote": "Get a quote"
   },
   "footer": {
     "rights": "All rights reserved."
@@ -117,25 +120,32 @@
     "items": [
       {
         "title": "Full renovations",
-        "body": "Home and apartment remodelling: kitchens, bathrooms, walk-in closets and new layouts, with a clear budget and site follow-up."
+        "body": "Home and apartment remodelling: kitchens, bathrooms, walk-in closets and new layouts, with a clear budget and site follow-up.",
+        "key": "reformas"
       },
       {
         "title": "Architecture & design",
-        "body": "Architectural design for homes, villas and commercial spaces, from concept to the technical drawings needed for permits and construction."
+        "body": "Architectural design for homes, villas and commercial spaces, from concept to the technical drawings needed for permits and construction.",
+        "key": "arquitectura"
       },
       {
         "title": "Construction & site management",
-        "body": "We coordinate contractors, materials and schedules so the build matches the design."
+        "body": "We coordinate contractors, materials and schedules so the build matches the design.",
+        "key": "construccion"
       },
       {
         "title": "Interior design",
-        "body": "Bespoke residential and commercial interiors: materials, lighting, furniture and joinery."
+        "body": "Bespoke residential and commercial interiors: materials, lighting, furniture and joinery.",
+        "key": "interiorismo"
       },
       {
         "title": "3D visualization & renders",
-        "body": "Photorealistic and cinematic renders to see and decide every detail before building."
+        "body": "Photorealistic and cinematic renders to see and decide every detail before building.",
+        "key": "render3d"
       }
-    ]
+    ],
+    "cta": "Get a quote",
+    "cardCta": "Get a quote"
   },
   "studioPage": {
     "metaTitle": "Stephany Seijas — Architect in El Hatillo, Caracas | Nina Marquina",
@@ -171,7 +181,12 @@
     "category": "Type",
     "gallery": "Gallery",
     "all": "All projects",
-    "home": "Home"
+    "home": "Home",
+    "cta": {
+      "label": "Imagining something like this?",
+      "title": "Tell us your idea and we'll prepare a <em>proposal</em>.",
+      "button": "Get a quote"
+    }
   },
   "journalPage": {
     "metaTitle": "Journal — Architecture, interiors & renovation | Nina Marquina",
@@ -184,5 +199,159 @@
     "back": "Back to journal",
     "more": "More articles",
     "spanishOnly": "This article is available in Spanish."
+  },
+  "quote": {
+    "metaTitle": "Get a quote for your renovation or architecture project in Caracas | Nina Marquina",
+    "metaDescription": "Request a quote for renovations, architecture, construction, interior design or 3D renders in El Hatillo, Caracas and Punta Cana. Answer a few questions and upload photos of your space.",
+    "label": "Quote",
+    "title": "Tell us about your <em>project</em>.",
+    "intro": "A few questions, about 3 minutes. We'll use this to prepare a first proposal and get back to you within 48 hours.",
+    "stepOf": "Step {n} of {total}",
+    "back": "Back",
+    "next": "Continue",
+    "submit": "Send request",
+    "sending": "Sending…",
+    "optional": "Optional",
+    "required": "Complete this step to continue.",
+    "summary": "Your request",
+    "steps": {
+      "service": {
+        "title": "What do you need?",
+        "hint": "Choose the main service. You can tell us the rest later."
+      },
+      "property": {
+        "title": "Tell us about the space",
+        "hint": "Property type, approximate size and location."
+      },
+      "needs": {
+        "title": "What would you like to do?",
+        "hint": "Tick everything that applies and describe your idea in your own words."
+      },
+      "budget": {
+        "title": "Budget and timing",
+        "hint": "An approximate range helps us propose the right solution."
+      },
+      "files": {
+        "title": "Photos, plans and ideas",
+        "hint": "Upload photos of the current space, plans or references you love."
+      },
+      "contact": {
+        "title": "How can we reach you?",
+        "hint": "We'll get back to you personally."
+      }
+    },
+    "fields": {
+      "propertyType": "Property type",
+      "propertyStatus": "Status",
+      "area": "Approximate size (m²)",
+      "location": "Location",
+      "zone": "Area / neighbourhood",
+      "needs": "Areas and works",
+      "description": "Describe your idea",
+      "descriptionPh": "E.g. We want to open the kitchen to the living room, redo the bathrooms and bring in more daylight…",
+      "budget": "Estimated budget (USD)",
+      "timeline": "When would you like to start?",
+      "links": "Inspiration links",
+      "linksPh": "Pinterest, Instagram, websites… (one per line)",
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone / WhatsApp",
+      "contactPref": "I prefer to be contacted by",
+      "consent": "I agree that Nina Marquina may use this data to respond to my request."
+    },
+    "drop": {
+      "title": "Drag your files here",
+      "or": "or",
+      "browse": "browse",
+      "limits": "JPG, PNG, HEIC, WEBP or PDF · up to {max} files of 15 MB",
+      "remove": "Remove",
+      "tooBig": "{name} is larger than 15 MB",
+      "badType": "{name} is not a supported format",
+      "tooMany": "Maximum {max} files"
+    },
+    "options": {
+      "service": {
+        "reformas": "Full renovation",
+        "arquitectura": "Architecture & design",
+        "construccion": "Construction & site management",
+        "interiorismo": "Interior design",
+        "render3d": "3D visualisation & renders",
+        "otro": "Other / not sure"
+      },
+      "serviceDesc": {
+        "reformas": "Kitchens, bathrooms, layouts",
+        "arquitectura": "Design, plans and permits",
+        "construccion": "New build and execution",
+        "interiorismo": "Materials, light and furniture",
+        "render3d": "Photorealistic renders",
+        "otro": "We'll advise you"
+      },
+      "propertyType": {
+        "casa": "House / villa",
+        "apartamento": "Apartment",
+        "townhouse": "Townhouse",
+        "local": "Retail space",
+        "oficina": "Office",
+        "terreno": "Plot of land",
+        "otro": "Other"
+      },
+      "propertyStatus": {
+        "existente": "Existing (renovation)",
+        "nuevo": "New build",
+        "compra": "About to buy"
+      },
+      "location": {
+        "elhatillo": "El Hatillo",
+        "caracas": "Elsewhere in Caracas",
+        "miranda": "Rest of Miranda",
+        "puntacana": "Punta Cana",
+        "otro": "Another city"
+      },
+      "needs": {
+        "cocina": "Kitchen",
+        "banos": "Bathrooms",
+        "closet": "Walk-in closet",
+        "sala": "Living / dining",
+        "habitaciones": "Bedrooms",
+        "distribucion": "New layout",
+        "ampliacion": "Extension",
+        "fachada": "Facade",
+        "terraza": "Terrace / garden",
+        "piscina": "Pool",
+        "iluminacion": "Lighting",
+        "mobiliario": "Custom furniture",
+        "planos": "Plans & permits",
+        "renders": "3D renders"
+      },
+      "budget": {
+        "b1": "Under 10,000",
+        "b2": "10,000 – 30,000",
+        "b3": "30,000 – 60,000",
+        "b4": "60,000 – 120,000",
+        "b5": "Over 120,000",
+        "nd": "Not sure yet"
+      },
+      "timeline": {
+        "asap": "As soon as possible",
+        "m3": "In 1 – 3 months",
+        "m6": "In 3 – 6 months",
+        "later": "Later on"
+      },
+      "contactPref": {
+        "whatsapp": "WhatsApp",
+        "email": "Email",
+        "llamada": "Phone call"
+      }
+    },
+    "success": {
+      "title": "Thank you, {name}!",
+      "body": "We've received your request. Stephany will review it and get back to you within 48 hours.",
+      "home": "Back to home",
+      "projects": "See projects"
+    },
+    "error": {
+      "generic": "We couldn't send your request. Please try again or email us at {email}.",
+      "upload": "Some files couldn't be uploaded. Check your connection and try again."
+    }
   }
 }

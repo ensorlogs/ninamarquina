@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...entry("/proyectos", 0.9),
     ...entry("/estudio", 0.8),
     ...entry("/journal", 0.7),
+    ...entry("/cotizar", 0.9),
     ...projects.flatMap((p) => entry(`/proyectos/${p.slug}`, 0.8)),
     ...posts.flatMap((p) => entry(`/journal/${p.slug}`, 0.6, p.date, ["es"])),
   ];

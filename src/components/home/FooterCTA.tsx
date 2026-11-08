@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { site, whatsappHref } from "@/lib/site";
 import { Arrow } from "../ui/Arrow";
 import { Logo } from "../ui/Logo";
@@ -20,11 +21,17 @@ export async function FooterCTA() {
             {t.rich("cta.title", { em: (c) => <em>{c}</em> })}
           </h2>
           <div className="mt-10 flex flex-wrap gap-4">
+            <Link
+              href="/cotizar"
+              className="link-arrow border border-ivory bg-ivory px-9 py-4 text-charcoal hover:border-clay hover:bg-clay hover:text-ivory"
+            >
+              {t("cta.quote")} <Arrow className="arrow" />
+            </Link>
             <a
               href={`mailto:${site.email}`}
-              className="link-arrow border border-ivory/50 px-9 py-4 hover:border-ivory hover:bg-ivory hover:text-charcoal"
+              className="link-arrow border border-ivory/40 px-8 py-4 hover:border-ivory"
             >
-              {t("cta.button")} <Arrow className="arrow" />
+              {t("cta.button")}
             </a>
             <a
               href={whatsappHref(t("cta.whatsappMessage"))}

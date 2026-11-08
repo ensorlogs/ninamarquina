@@ -4,7 +4,7 @@ import { BeforeAfterSlider } from "./BeforeAfterSlider";
 export async function BeforeAfter() {
   const t = await getTranslations("beforeAfter");
   return (
-    <section id="servicios" className="scroll-mt-20 bg-ivory pb-20 md:pb-28">
+    <section id="transformaciones" className="scroll-mt-20 bg-ivory pb-20 md:pb-28">
       <div className="container-site">
         <div className="mb-10 grid gap-6 border-t border-black/10 pt-16 md:grid-cols-2 md:items-end md:gap-16 md:pt-20">
           <div>

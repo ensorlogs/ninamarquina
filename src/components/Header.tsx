@@ -60,6 +60,14 @@ export function Header() {
               </NavLink>
             ))}
             <LocaleSwitch locale={locale} pathname={pathname} />
+            <Link
+              href="/cotizar"
+              className={`border px-5 py-2.5 text-[10.5px] font-medium uppercase tracking-[0.2em] transition-colors ${
+                solid ? "border-charcoal hover:bg-charcoal hover:text-ivory" : "border-white/70 hover:bg-white hover:text-charcoal"
+              }`}
+            >
+              {t("quote")}
+            </Link>
           </nav>
 
           <button
@@ -97,7 +105,16 @@ export function Header() {
                 </li>
               ))}
             </ul>
-            <LocaleSwitch locale={locale} pathname={pathname} onNavigate={() => setOpen(false)} />
+            <div className="space-y-8">
+              <Link
+                href="/cotizar"
+                onClick={() => setOpen(false)}
+                className="link-arrow w-full justify-center bg-charcoal px-8 py-4 text-ivory"
+              >
+                {t("quote")}
+              </Link>
+              <LocaleSwitch locale={locale} pathname={pathname} onNavigate={() => setOpen(false)} />
+            </div>
           </nav>
         </div>
     </>

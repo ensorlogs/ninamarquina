@@ -114,7 +114,20 @@ export default async function ProjectPage({ params }: Props) {
           </section>
         )}
 
-        <Link href={`/proyectos/${next.slug}`} className="group mt-24 flex items-center justify-between gap-6 border-t border-black/10 pt-10">
+        <section className="mt-24 bg-espresso px-6 py-14 text-ivory md:px-14 md:py-16">
+          <p className="label text-ivory/65">{t("cta.label")}</p>
+          <div className="mt-5 grid gap-8 md:grid-cols-[1.4fr_auto] md:items-end">
+            <p className="display text-[32px] md:text-[44px]">{t.rich("cta.title", { em: (c) => <em>{c}</em> })}</p>
+            <Link
+              href="/cotizar"
+              className="link-arrow justify-self-start bg-ivory px-8 py-4 text-charcoal transition-colors hover:bg-clay hover:text-ivory"
+            >
+              {t("cta.button")} <Arrow className="arrow" />
+            </Link>
+          </div>
+        </section>
+
+        <Link href={`/proyectos/${next.slug}`} className="group mt-16 flex items-center justify-between gap-6 border-t border-black/10 pt-10">
           <div>
             <p className="label text-muted">{tp("next")}</p>
             <p className="mt-3 font-serif text-[34px] leading-tight md:text-[48px]">{next.title}</p>

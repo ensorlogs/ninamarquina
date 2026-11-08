@@ -1,0 +1,93 @@
+import { NextResponse } from "next/server";
+import { type QuoteInput, validateQuote } from "@/lib/quote";
+import { site } from "@/lib/site";
+import { supabaseAdmin } from "@/lib/supabase-admin";
+
+const clip = (v: unknown, n: number) => (typeof v === "string" ? v.trim().slice(0, n) : "");
+
+export async function POST(request: Request) {
+  const q = (await request.json().catch(() => ({}))) as Partial<QuoteInput>;
+  if (q.company) return NextResponse.json({ ok: true });
+
+  const invalid = validateQuote(q);
+  if (invalid) return NextResponse.json({ error: "invalid", field: invalid }, { status: 400 });
+
+  const row = {
+    locale: q.locale === "en" ? "en" : "es",
+    service: q.service,
+    property_type: q.propertyType,
+    property_status: q.propertyStatus || null,
+    area_m2: Number(q.area) > 0 ? Math.min(Number(q.area), 1_000_000) : null,
+    location: q.location,
+    zone: clip(q.zone, 120) || null,
+    needs: q.needs,
+    description: clip(q.description, 4000) || null,
+    budget: q.budget,
+    timeline: q.timeline,
+    links: clip(q.links, 2000)
+      .split(/\s+/)
+      .filter((l) => /^https?:\/\//.test(l))
+      .slice(0, 10),
+    files: q.files,
+    name: clip(q.name, 120),
+    email: clip(q.email, 160).toLowerCase(),
+    phone: clip(q.phone, 40),
+    contact_pref: q.contactPref ?? "whatsapp",
+    source: "web",
+  };
+
+  const supabase = supabaseAdmin();
+  if (!supabase) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[quote] Supabase not configured; simulated request", row);
+      return NextResponse.json({ ok: true, simulated: true });
+    }
+    return NextResponse.json({ error: "not_configured" }, { status: 503 });
+  }
+
+  const { data, error } = await supabase.from("quote_requests").insert(row).select("id").single();
+  if (error) {
+    console.error("[quote] insert failed", error);
+    return NextResponse.json({ error: "provider_error" }, { status: 502 });
+  }
+
+  await notify(row, data.id).catch((e) => console.error("[quote] notify failed", e));
+  return NextResponse.json({ ok: true, id: data.id });
+}
+
+async function notify(row: Record<string, unknown>, id: string) {
+  const apiKey = process.env.BREVO_API_KEY;
+  if (!apiKey) return;
+  const sender = { name: "Nina Marquina", email: process.env.BREVO_SENDER_EMAIL ?? site.email };
+  const to = process.env.QUOTE_NOTIFY_EMAIL ?? site.email;
+  const lines = Object.entries(row)
+    .filter(([, v]) => v !== null && v !== "" && !(Array.isArray(v) && v.length === 0))
+    .map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0;color:#5E5851">${k}</td><td>${escape(Array.isArray(v) ? v.join(", ") : String(v))}</td></tr>`)
+    .join("");
+  const send = (body: object) =>
+    fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: { "api-key": apiKey, "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ sender, ...body }),
+    });
+  const es = row.locale !== "en";
+  await Promise.all([
+    send({
+      to: [{ email: to }],
+      replyTo: { email: row.email, name: row.name },
+      subject: `Nueva solicitud de cotización — ${row.name} (${row.service})`,
+      htmlContent: `<p>Nueva solicitud <b>${id}</b></p><table>${lines}</table>`,
+    }),
+    send({
+      to: [{ email: row.email, name: row.name }],
+      subject: es ? "Hemos recibido tu solicitud — Nina Marquina" : "We've received your request — Nina Marquina",
+      htmlContent: es
+        ? `<p>Hola ${escape(String(row.name))},</p><p>Gracias por contarnos tu proyecto. Stephany revisará tu solicitud y te contactará en menos de 48 horas.</p><p>Nina Marquina — Architecture &amp; Interiors</p>`
+        : `<p>Hi ${escape(String(row.name))},</p><p>Thank you for telling us about your project. Stephany will review your request and get back to you within 48 hours.</p><p>Nina Marquina — Architecture &amp; Interiors</p>`,
+    }),
+  ]);
+}
+
+function escape(s: string) {
+  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
+}
