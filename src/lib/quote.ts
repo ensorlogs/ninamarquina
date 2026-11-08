@@ -45,6 +45,7 @@ export type QuoteInput = {
   phone: string;
   contactPref: (typeof CONTACT_PREFS)[number];
   consent: boolean;
+  newsletter?: boolean;
   company?: string;
 };
 

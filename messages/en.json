@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Architect in El Hatillo, Caracas | Renovations, Architecture & Construction — Nina Marquina",
-    "description": "Architecture, full renovation, construction and interior design studio in El Hatillo and Caracas, Venezuela, with projects in Punta Cana. Design, 3D visualization and site management by architect Stephany Seijas.",
+    "description": "Architecture, full renovation, construction and interior design studio in El Hatillo and Caracas, Venezuela, with projects in Punta Cana. Design, 3D visualization and site management by architect Stephany Marquina.",
     "keywords": "architect El Hatillo, architect Caracas, renovations Caracas, home renovation Caracas, construction El Hatillo, construction company Caracas, interior design Caracas, kitchen remodel Caracas, colonial house restoration El Hatillo, architectural 3D visualization, architectural renders, architect Punta Cana"
   },
   "nav": {
@@ -55,10 +55,10 @@
   },
   "studio": {
     "label": "The studio",
-    "title": "Stephany Seijas, the architect behind <em>Nina Marquina</em>.",
+    "title": "Stephany Marquina, the architect behind <em>the studio</em>.",
     "body": "An architect and 3D designer, Stephany turns her clients' ideas into integrated, functional spaces where experience comes first. From the first sketches to technical drawings, renders and construction, every project follows a clear, intentional process.",
     "link": "Meet Stephany",
-    "imageAlt": "Portrait of architect Stephany Seijas, founder of Nina Marquina"
+    "imageAlt": "Portrait of architect Stephany Marquina, founder of Nina Marquina"
   },
   "journal": {
     "label": "Journal / News",
@@ -148,13 +148,13 @@
     "cardCta": "Get a quote"
   },
   "studioPage": {
-    "metaTitle": "Stephany Seijas — Architect in El Hatillo, Caracas | Nina Marquina",
-    "metaDescription": "Meet Stephany Seijas, architect and 3D designer and founder of Nina Marquina: architecture, renovations, construction and interior design in El Hatillo, Caracas and Punta Cana.",
+    "metaTitle": "Stephany Marquina — Architect in El Hatillo, Caracas | Nina Marquina",
+    "metaDescription": "Meet Stephany Marquina, architect and 3D designer and founder of Nina Marquina: architecture, renovations, construction and interior design in El Hatillo, Caracas and Punta Cana.",
     "label": "The studio",
-    "title": "Stephany <em>Seijas</em>",
+    "title": "Stephany <em>Marquina</em>",
     "role": "Architect & 3D designer · Founder",
     "paragraphs": [
-      "I'm Stephany Seijas, an architect and 3D designer, and I'm the person behind Nina Marquina. I specialise in developing and visualizing architecture and interior design projects, working from El Hatillo for clients in Caracas and Punta Cana.",
+      "I'm Stephany Marquina, an architect and 3D designer, and I'm the person behind Nina Marquina. I specialise in developing and visualizing architecture and interior design projects, working from El Hatillo for clients in Caracas and Punta Cana.",
       "My approach is about turning my clients' ideas into integrated, functional designs, creating spaces where experience becomes the main element.",
       "From the first conceptual sketches and space planning to technical drawings, high-quality renders and support on site, I work through a structured, coherent process. Ideas evolve clearly and intentionally, with a real connection between design, function and atmosphere.",
       "By combining architectural thinking with advanced 3D visualization, I help clients understand, refine and experience their projects before they are built. Every space is conceived not only to be seen, but to be lived in."
@@ -190,7 +190,7 @@
   },
   "journalPage": {
     "metaTitle": "Journal — Architecture, interiors & renovation | Nina Marquina",
-    "metaDescription": "Articles by Stephany Seijas on architecture, interior design, renovation and construction: trends, processes and encounters with great architects.",
+    "metaDescription": "Articles by Stephany Marquina on architecture, interior design, renovation and construction: trends, processes and encounters with great architects.",
     "label": "Journal",
     "title": "Ideas, processes and <em>encounters</em>",
     "intro": "Reflections on architecture, interiors and the way we inhabit spaces. Articles are written in Spanish.",
@@ -257,7 +257,8 @@
       "email": "Email",
       "phone": "Phone / WhatsApp",
       "contactPref": "I prefer to be contacted by",
-      "consent": "I agree that Nina Marquina may use this data to respond to my request."
+      "consent": "I agree that Nina Marquina may use this data to respond to my request.",
+      "newsletter": "I want to receive ideas, projects and news from Nina Marquina by email."
     },
     "drop": {
       "title": "Drag your files here",

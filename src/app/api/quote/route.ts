@@ -52,6 +52,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "provider_error" }, { status: 502 });
   }
 
+  await syncContact(row as QuoteRow, q.newsletter !== false).catch((e) => console.error("[quote] contact sync failed", e));
   await notify(supabase, row as QuoteRow, data.id).catch((e) => console.error("[quote] notify failed", e));
   return NextResponse.json({ ok: true, id: data.id });
 }
@@ -103,4 +104,24 @@ async function notify(supabase: NonNullable<ReturnType<typeof supabaseAdmin>>, r
       tags: ["quote-client"],
     }),
   ]);
+}
+
+async function syncContact(row: QuoteRow, newsletter: boolean) {
+  const apiKey = process.env.BREVO_API_KEY;
+  const listIds = [process.env.BREVO_QUOTE_LIST_ID, newsletter ? process.env.BREVO_NEWSLETTER_LIST_ID : undefined]
+    .map(Number)
+    .filter((n) => n > 0);
+  if (!apiKey || !listIds.length) return;
+  const [first, ...rest] = row.name.split(" ");
+  const res = await fetch("https://api.brevo.com/v3/contacts", {
+    method: "POST",
+    headers: { "api-key": apiKey, "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      email: row.email,
+      listIds,
+      updateEnabled: true,
+      attributes: { FIRSTNAME: first, LASTNAME: rest.join(" "), LANGUAGE: row.locale === "en" ? "EN" : "ES" },
+    }),
+  });
+  if (!res.ok && res.status !== 204) console.error("[quote] Brevo contact error", res.status, await res.text());
 }

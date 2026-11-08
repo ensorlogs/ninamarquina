@@ -33,7 +33,7 @@ export default async function StudioPage({ params }: Props) {
         data={{
           "@context": "https://schema.org",
           "@type": "Person",
-          name: "Stephany Seijas",
+          name: "Stephany Marquina",
           jobTitle: t("role"),
           image: `${site.url}/images/stephany.jpg`,
           worksFor: { "@type": "Organization", name: "Nina Marquina", url: site.url },

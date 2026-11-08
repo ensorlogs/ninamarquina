@@ -62,6 +62,7 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
     phone: "",
     contactPref: "whatsapp",
     consent: false,
+    newsletter: true,
     company: "",
   });
 
@@ -349,6 +350,10 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
               <label className="flex items-start gap-3 text-[13.5px] leading-[1.6] text-muted">
                 <input type="checkbox" checked={q.consent} onChange={(e) => set("consent", e.target.checked)} className="mt-1 h-4 w-4 accent-clay" />
                 {t("fields.consent")}
+              </label>
+              <label className="flex items-start gap-3 text-[13.5px] leading-[1.6] text-muted">
+                <input type="checkbox" checked={q.newsletter} onChange={(e) => set("newsletter", e.target.checked)} className="mt-1 h-4 w-4 accent-clay" />
+                {t("fields.newsletter")}
               </label>
             </div>
           )}

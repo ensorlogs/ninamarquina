@@ -47,7 +47,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       })),
     },
     sameAs: Object.values(site.social),
-    founder: { "@type": "Person", name: "Stephany Seijas", jobTitle: "Arquitecta", image: `${site.url}/images/stephany.jpg` },
+    founder: { "@type": "Person", name: "Stephany Marquina", jobTitle: "Arquitecta", image: `${site.url}/images/stephany.jpg` },
   };
 
   return (

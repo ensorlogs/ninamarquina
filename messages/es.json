@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Arquitecta en El Hatillo, Caracas | Reformas, Arquitectura y Construcción — Nina Marquina",
-    "description": "Estudio de arquitectura, reformas integrales, construcción e interiorismo en El Hatillo y Caracas, con proyectos en Punta Cana. Diseño, visualización 3D y dirección de obra con la arquitecta Stephany Seijas.",
+    "description": "Estudio de arquitectura, reformas integrales, construcción e interiorismo en El Hatillo y Caracas, con proyectos en Punta Cana. Diseño, visualización 3D y dirección de obra con la arquitecta Stephany Marquina.",
     "keywords": "arquitecto El Hatillo, arquitecta Caracas, reformas El Hatillo, reformas Caracas, remodelación de casas Caracas, remodelación de apartamentos Caracas, construcción El Hatillo, empresa de construcción Caracas, interiorismo Caracas, diseño de interiores El Hatillo, remodelación de cocinas Caracas, rehabilitación casa colonial El Hatillo, visualización 3D arquitectura, renders arquitectónicos, arquitectura Punta Cana"
   },
   "nav": {
@@ -55,10 +55,10 @@
   },
   "studio": {
     "label": "El estudio",
-    "title": "Stephany Seijas, la arquitecta detrás de <em>Nina Marquina</em>.",
+    "title": "Stephany Marquina, la arquitecta detrás <em>del estudio</em>.",
     "body": "Arquitecta y diseñadora 3D, Stephany transforma las ideas de sus clientes en espacios integrados y funcionales, donde la experiencia es el elemento principal. Desde los primeros bocetos hasta los planos técnicos, los renders y la obra, cada proyecto sigue un proceso claro e intencional.",
     "link": "Conocer a Stephany",
-    "imageAlt": "Retrato de la arquitecta Stephany Seijas, fundadora de Nina Marquina"
+    "imageAlt": "Retrato de la arquitecta Stephany Marquina, fundadora de Nina Marquina"
   },
   "journal": {
     "label": "Journal / News",
@@ -148,13 +148,13 @@
     "cardCta": "Cotizar"
   },
   "studioPage": {
-    "metaTitle": "Stephany Seijas — Arquitecta en El Hatillo, Caracas | Nina Marquina",
-    "metaDescription": "Conoce a Stephany Seijas, arquitecta y diseñadora 3D fundadora de Nina Marquina: arquitectura, reformas, construcción e interiorismo en El Hatillo, Caracas y Punta Cana.",
+    "metaTitle": "Stephany Marquina — Arquitecta en El Hatillo, Caracas | Nina Marquina",
+    "metaDescription": "Conoce a Stephany Marquina, arquitecta y diseñadora 3D fundadora de Nina Marquina: arquitectura, reformas, construcción e interiorismo en El Hatillo, Caracas y Punta Cana.",
     "label": "El estudio",
-    "title": "Stephany <em>Seijas</em>",
+    "title": "Stephany <em>Marquina</em>",
     "role": "Arquitecta y diseñadora 3D · Fundadora",
     "paragraphs": [
-      "Soy Stephany Seijas, arquitecta y diseñadora 3D, y detrás de Nina Marquina estoy yo. Me especializo en el desarrollo y la visualización de proyectos de arquitectura e interiorismo, y trabajo desde El Hatillo para clientes en Caracas y Punta Cana.",
+      "Soy Stephany Marquina, arquitecta y diseñadora 3D, y detrás de Nina Marquina estoy yo. Me especializo en el desarrollo y la visualización de proyectos de arquitectura e interiorismo, y trabajo desde El Hatillo para clientes en Caracas y Punta Cana.",
       "Mi enfoque se centra en transformar las ideas de mis clientes en diseños integrados y funcionales, creando espacios donde la experiencia se convierte en el elemento principal.",
       "Desde los primeros bocetos conceptuales y la planificación espacial hasta el desarrollo de planos técnicos, renders de alta calidad y el acompañamiento en obra, trabajo cada proyecto a través de un proceso estructurado y coherente. Así las ideas evolucionan de forma clara e intencional, con una conexión real entre diseño, funcionalidad y atmósfera.",
       "Al combinar el pensamiento arquitectónico con la visualización 3D avanzada, ayudo a mis clientes a comprender, perfeccionar y experimentar sus proyectos antes de construirlos. Cada espacio se concibe no solo para ser visto, sino para ser vivido."
@@ -190,7 +190,7 @@
   },
   "journalPage": {
     "metaTitle": "Journal — Arquitectura, interiorismo y reformas | Nina Marquina",
-    "metaDescription": "Artículos de Stephany Seijas sobre arquitectura, interiorismo, reformas y construcción: tendencias, procesos y encuentros con grandes arquitectos.",
+    "metaDescription": "Artículos de Stephany Marquina sobre arquitectura, interiorismo, reformas y construcción: tendencias, procesos y encuentros con grandes arquitectos.",
     "label": "Journal",
     "title": "Ideas, procesos y <em>encuentros</em>",
     "intro": "Reflexiones sobre arquitectura, interiorismo y la forma en que habitamos los espacios.",
@@ -257,7 +257,8 @@
       "email": "Email",
       "phone": "Teléfono / WhatsApp",
       "contactPref": "Prefiero que me contacten por",
-      "consent": "Acepto que Nina Marquina use estos datos para responder a mi solicitud."
+      "consent": "Acepto que Nina Marquina use estos datos para responder a mi solicitud.",
+      "newsletter": "Quiero recibir ideas, proyectos y novedades de Nina Marquina por email."
     },
     "drop": {
       "title": "Arrastra tus archivos aquí",
