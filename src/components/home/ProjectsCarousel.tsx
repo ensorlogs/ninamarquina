@@ -9,7 +9,10 @@ export type CarouselItem = { slug: string; title: string; meta: string; image: s
 
 export function ProjectsCarousel({ items, labels }: { items: CarouselItem[]; labels: { prev: string; next: string } }) {
   const track = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const paused = hovered || focused || touched;
   const [index, setIndex] = useState(0);
 
   const cardStep = () => {
@@ -40,17 +43,18 @@ export function ProjectsCarousel({ items, labels }: { items: CarouselItem[]; lab
     const el = track.current;
     const w = cardStep();
     if (!el || !w) return;
-    const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 4;
-    setIndex(atEnd ? items.length - 1 : Math.round(el.scrollLeft / w));
+    setIndex(Math.min(items.length - 1, Math.round(el.scrollLeft / w)));
   };
 
   return (
     <div
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
-      onTouchStart={() => setPaused(true)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setFocused(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocused(false);
+      }}
+      onTouchStart={() => setTouched(true)}
     >
       <div
         ref={track}
