@@ -8,11 +8,11 @@ import { Logo } from "./ui/Logo";
 
 const items = [
   { key: "home", href: "/" },
-  { key: "projects", href: "/#proyectos" },
-  { key: "studio", href: "/#estudio" },
+  { key: "projects", href: "/proyectos" },
+  { key: "studio", href: "/estudio" },
   { key: "services", href: "/#servicios" },
-  { key: "journal", href: "/#journal" },
-  { key: "contact", href: "/#contacto" },
+  { key: "journal", href: "/journal" },
+  { key: "contact", href: "#contacto" },
 ] as const;
 
 export function Header() {
@@ -33,7 +33,7 @@ export function Header() {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
 
-  const solid = scrolled || open;
+  const solid = scrolled || open || pathname !== "/";
 
   return (
     <>
@@ -51,13 +51,13 @@ export function Header() {
 
           <nav className="hidden items-center gap-9 lg:flex">
             {items.map((item) => (
-              <Link
+              <NavLink
                 key={item.key}
                 href={item.href}
                 className="text-[10.5px] font-medium uppercase tracking-[0.2em] opacity-90 transition-opacity hover:opacity-60"
               >
                 {t(item.key)}
-              </Link>
+              </NavLink>
             ))}
             <LocaleSwitch locale={locale} pathname={pathname} />
           </nav>
@@ -91,9 +91,9 @@ export function Header() {
             <ul className="space-y-5">
               {items.map((item) => (
                 <li key={item.key}>
-                  <Link href={item.href} onClick={() => setOpen(false)} className="display text-4xl">
+                  <NavLink href={item.href} onClick={() => setOpen(false)} className="display text-4xl">
                     {t(item.key)}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
             </ul>
@@ -102,6 +102,10 @@ export function Header() {
         </div>
     </>
   );
+}
+
+function NavLink({ href, ...props }: { href: string; className: string; onClick?: () => void; children: React.ReactNode }) {
+  return href.startsWith("#") ? <a href={href} {...props} /> : <Link href={href} {...props} />;
 }
 
 function LocaleSwitch({

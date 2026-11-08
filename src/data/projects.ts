@@ -107,3 +107,7 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
+
+export function projectMeta(p: Project, locale: Locale) {
+  return [p.location, p.category[locale], p.year].filter(Boolean).join(" · ");
+}

@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Nina Marquina — Arquitectura e Interiorismo en El Hatillo, Caracas",
-    "description": "Estudio boutique de arquitectura, interiorismo, rehabilitación colonial y reformas de alto nivel en El Hatillo, Caracas, con proyectos en Punta Cana.",
-    "keywords": "Arquitectura en El Hatillo, Interiorismo Caracas, Rehabilitación colonial, Arquitecta en Venezuela, Diseño de cocinas y walk-in closets, Arquitectura Punta Cana, Visualización 3D"
+    "title": "Arquitecta en El Hatillo, Caracas | Reformas, Arquitectura y Construcción — Nina Marquina",
+    "description": "Estudio de arquitectura, reformas integrales, construcción e interiorismo en El Hatillo y Caracas, con proyectos en Punta Cana. Diseño, visualización 3D y dirección de obra con la arquitecta Stephany Seijas.",
+    "keywords": "arquitecto El Hatillo, arquitecta Caracas, reformas El Hatillo, reformas Caracas, remodelación de casas Caracas, remodelación de apartamentos Caracas, construcción El Hatillo, empresa de construcción Caracas, interiorismo Caracas, diseño de interiores El Hatillo, remodelación de cocinas Caracas, rehabilitación casa colonial El Hatillo, visualización 3D arquitectura, renders arquitectónicos, arquitectura Punta Cana"
   },
   "nav": {
     "home": "Inicio",
@@ -30,7 +30,9 @@
   "projects": {
     "label": "Proyectos destacados",
     "viewAll": "Ver todos los proyectos",
-    "altPrefix": "Proyecto"
+    "altPrefix": "Proyecto",
+    "prev": "Proyecto anterior",
+    "next": "Proyecto siguiente"
   },
   "beforeAfter": {
     "label": "Transformaciones",
@@ -51,11 +53,10 @@
   },
   "studio": {
     "label": "El estudio",
-    "title": "Una práctica personal de la arquitectura.",
-    "body": "Nina Marquina, arquitecta e ingeniera civil, lidera un estudio que aborda cada proyecto desde la sensibilidad por el lugar, la materia y las personas que lo habitan: sostenibilidad, reformas de alto nivel y diseño a medida de cocinas, walk-in closets y mobiliario.",
-    "link": "Conocer el estudio",
-    "image1Alt": "Planos arquitectónicos y muestras de materiales sobre un escritorio",
-    "image2Alt": "Estantería de madera con libros y un olivo en maceta"
+    "title": "Stephany Seijas, la arquitecta detrás de <em>Nina Marquina</em>.",
+    "body": "Arquitecta y diseñadora 3D, Stephany transforma las ideas de sus clientes en espacios integrados y funcionales, donde la experiencia es el elemento principal. Desde los primeros bocetos hasta los planos técnicos, los renders y la obra, cada proyecto sigue un proceso claro e intencional.",
+    "link": "Conocer a Stephany",
+    "imageAlt": "Retrato de la arquitecta Stephany Seijas, fundadora de Nina Marquina"
   },
   "journal": {
     "label": "Journal / News",
@@ -65,32 +66,6 @@
     "close": "Cerrar",
     "prev": "Anterior",
     "next": "Siguiente",
-    "posts": [
-      {
-        "slug": "cocinas-a-medida",
-        "category": "Diseño a medida",
-        "date": "Oct 2026",
-        "title": "Cocinas que se piensan desde la vida diaria",
-        "image": "/images/journal-cocina.jpg",
-        "alt": "Cocina a medida con isla de travertino y madera de nogal"
-      },
-      {
-        "slug": "walk-in-closets",
-        "category": "Interiorismo",
-        "date": "Sep 2026",
-        "title": "El walk-in closet como espacio de calma",
-        "image": "/images/journal-closet.jpg",
-        "alt": "Walk-in closet de nogal con isla de travertino"
-      },
-      {
-        "slug": "rehabilitacion-sostenible",
-        "category": "Sostenibilidad",
-        "date": "Ago 2026",
-        "title": "Rehabilitar con cal, barro y madera recuperada",
-        "image": "/images/journal-sostenible.jpg",
-        "alt": "Obra de rehabilitación con tejas y vigas recuperadas"
-      }
-    ],
     "stories": [
       {
         "title": "Revoco de cal",
@@ -134,5 +109,80 @@
   },
   "whatsapp": {
     "label": "Escríbenos por WhatsApp"
+  },
+  "services": {
+    "label": "Servicios",
+    "title": "Arquitectura, reformas y construcción en <em>El Hatillo y Caracas</em>.",
+    "body": "Acompañamos cada proyecto de principio a fin: desde la primera idea y los planos hasta la obra terminada. Trabajamos en El Hatillo, La Lagunita, Alto Hatillo, Baruta, Chacao y el resto de Caracas, y desarrollamos proyectos en Punta Cana.",
+    "items": [
+      {
+        "title": "Reformas integrales",
+        "body": "Remodelación de casas y apartamentos: cocinas, baños, walk-in closets y redistribución de espacios, con presupuesto claro y seguimiento de obra."
+      },
+      {
+        "title": "Arquitectura y proyecto",
+        "body": "Diseño arquitectónico de viviendas, villas y espacios comerciales, desde el anteproyecto hasta los planos técnicos para permisos y construcción."
+      },
+      {
+        "title": "Construcción y dirección de obra",
+        "body": "Coordinamos contratistas, materiales y tiempos para que la obra se construya tal como se diseñó."
+      },
+      {
+        "title": "Interiorismo",
+        "body": "Interiores residenciales y comerciales a medida: materiales, iluminación, mobiliario y carpintería."
+      },
+      {
+        "title": "Visualización 3D y renders",
+        "body": "Renders fotorrealistas y cinematográficos para ver y decidir cada detalle antes de construir."
+      }
+    ]
+  },
+  "studioPage": {
+    "metaTitle": "Stephany Seijas — Arquitecta en El Hatillo, Caracas | Nina Marquina",
+    "metaDescription": "Conoce a Stephany Seijas, arquitecta y diseñadora 3D fundadora de Nina Marquina: arquitectura, reformas, construcción e interiorismo en El Hatillo, Caracas y Punta Cana.",
+    "label": "El estudio",
+    "title": "Stephany <em>Seijas</em>",
+    "role": "Arquitecta y diseñadora 3D · Fundadora",
+    "paragraphs": [
+      "Soy Stephany Seijas, arquitecta y diseñadora 3D, y detrás de Nina Marquina estoy yo. Me especializo en el desarrollo y la visualización de proyectos de arquitectura e interiorismo, y trabajo desde El Hatillo para clientes en Caracas y Punta Cana.",
+      "Mi enfoque se centra en transformar las ideas de mis clientes en diseños integrados y funcionales, creando espacios donde la experiencia se convierte en el elemento principal.",
+      "Desde los primeros bocetos conceptuales y la planificación espacial hasta el desarrollo de planos técnicos, renders de alta calidad y el acompañamiento en obra, trabajo cada proyecto a través de un proceso estructurado y coherente. Así las ideas evolucionan de forma clara e intencional, con una conexión real entre diseño, funcionalidad y atmósfera.",
+      "Al combinar el pensamiento arquitectónico con la visualización 3D avanzada, ayudo a mis clientes a comprender, perfeccionar y experimentar sus proyectos antes de construirlos. Cada espacio se concibe no solo para ser visto, sino para ser vivido."
+    ],
+    "helpLabel": "¿Cómo puedo ayudarte?",
+    "help": [
+      "Diseño arquitectónico",
+      "Reformas y construcción",
+      "Visualización 3D",
+      "Renders cinematográficos",
+      "Diseño de interiores"
+    ],
+    "locationsLabel": "Dónde trabajamos",
+    "projectsLink": "Ver proyectos"
+  },
+  "projectsPage": {
+    "metaTitle": "Proyectos de arquitectura, reformas e interiorismo | Nina Marquina — El Hatillo, Caracas",
+    "metaDescription": "Portfolio de Nina Marquina: villas, townhouses, apartamentos, complejos deportivos y showrooms. Arquitectura, interiorismo y visualización 3D desde El Hatillo, Caracas, hasta Punta Cana.",
+    "label": "Proyectos",
+    "title": "Proyectos <em>seleccionados</em>",
+    "intro": "Arquitectura residencial y comercial, interiorismo y visualización 3D: una selección de proyectos desarrollados por el estudio.",
+    "year": "Año",
+    "location": "Ubicación",
+    "category": "Tipología",
+    "gallery": "Galería",
+    "all": "Todos los proyectos",
+    "home": "Inicio"
+  },
+  "journalPage": {
+    "metaTitle": "Journal — Arquitectura, interiorismo y reformas | Nina Marquina",
+    "metaDescription": "Artículos de Stephany Seijas sobre arquitectura, interiorismo, reformas y construcción: tendencias, procesos y encuentros con grandes arquitectos.",
+    "label": "Journal",
+    "title": "Ideas, procesos y <em>encuentros</em>",
+    "intro": "Reflexiones sobre arquitectura, interiorismo y la forma en que habitamos los espacios.",
+    "read": "Leer artículo",
+    "minutes": "{n} min de lectura",
+    "back": "Volver al journal",
+    "more": "Más artículos",
+    "spanishOnly": ""
   }
 }

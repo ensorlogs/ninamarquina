@@ -1,14 +1,14 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { formatDate, posts } from "@/data/posts";
 import { Arrow } from "../ui/Arrow";
 import { Stories, type Story } from "./Stories";
 
-type Post = { slug: string; category: string; date: string; title: string; image: string; alt: string };
-
 export async function Journal() {
   const t = await getTranslations("journal");
-  const posts = t.raw("posts") as Post[];
+  const tp = await getTranslations("journalPage");
+  const locale = await getLocale();
   const stories = t.raw("stories") as Story[];
 
   return (
@@ -16,31 +16,14 @@ export async function Journal() {
       <div className="container-site">
         <div className="mb-8 flex items-center justify-between gap-6">
           <p className="label text-muted">{t("label")}</p>
-          <Link href="/#journal" className="link-arrow text-muted hover:text-clay">
+          <Link href="/journal" className="link-arrow text-muted hover:text-clay">
             {t("viewAll")} <Arrow className="arrow" />
           </Link>
         </div>
 
         <div className="grid gap-12 md:grid-cols-3 md:gap-7">
-          {posts.map((post) => (
-            <Link key={post.slug} href="/#journal" className="group block">
-              <div className="relative aspect-[4/3] overflow-hidden bg-stone">
-                <Image
-                  src={post.image}
-                  alt={post.alt}
-                  fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                  className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
-                />
-              </div>
-              <p className="label mt-5 text-muted">
-                {post.category} · {post.date}
-              </p>
-              <div className="mt-2 flex items-start justify-between gap-4">
-                <h3 className="font-serif text-[24px] leading-[1.15]">{post.title}</h3>
-                <Arrow direction="up-right" className="mt-2 shrink-0" />
-              </div>
-            </Link>
+          {posts.slice(0, 3).map((post) => (
+            <PostCard key={post.slug} post={post} meta={`${formatDate(post.date, locale)} · ${tp("minutes", { n: post.minutes })}`} />
           ))}
         </div>
 
@@ -53,5 +36,28 @@ export async function Journal() {
         </div>
       </div>
     </section>
+  );
+}
+
+export function PostCard({ post, meta }: { post: (typeof posts)[number]; meta: string }) {
+  return (
+    <Link href={`/journal/${post.slug}`} className="group block">
+      <div className="relative aspect-[4/3] overflow-hidden bg-stone">
+        {post.cover && (
+          <Image
+            src={post.cover}
+            alt={post.title}
+            fill
+            sizes="(min-width: 768px) 33vw, 100vw"
+            className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
+          />
+        )}
+      </div>
+      <p className="label mt-5 text-muted">{meta}</p>
+      <div className="mt-2 flex items-start justify-between gap-4">
+        <h3 className="font-serif text-[24px] leading-[1.15]">{post.title}</h3>
+        <Arrow direction="up-right" className="mt-2 shrink-0" />
+      </div>
+    </Link>
   );
 }

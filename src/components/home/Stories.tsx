@@ -96,7 +96,7 @@ export function Stories({ stories, labels }: Props) {
               ))}
             </div>
 
-            <div className="absolute inset-x-4 top-9 flex items-center justify-between text-white">
+            <div className="absolute inset-x-4 top-9 z-10 flex items-center justify-between text-white">
               <span className="label">Nina Marquina · {current.title}</span>
               <button type="button" onClick={close} className="label opacity-90 hover:opacity-60" aria-label={labels.close}>
                 ✕

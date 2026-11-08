@@ -3,6 +3,9 @@ import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Header } from "@/components/Header";
+import { FooterCTA } from "@/components/home/FooterCTA";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { routing } from "@/i18n/routing";
 import { site } from "@/lib/site";
 import "../globals.css";
@@ -33,7 +36,7 @@ export async function generateMetadata({ params }: Omit<Props, "children">): Pro
   const t = await getTranslations({ locale, namespace: "meta" });
   return {
     metadataBase: new URL(site.url),
-    title: t("title"),
+    title: { default: t("title"), template: "%s | Nina Marquina" },
     description: t("description"),
     keywords: t("keywords"),
     alternates: {
@@ -66,7 +69,12 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} className={`${cormorant.variable} ${jakarta.variable}`}>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <Header />
+          {children}
+          <FooterCTA />
+          <WhatsAppButton />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
