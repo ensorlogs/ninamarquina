@@ -120,7 +120,7 @@ async function syncContact(row: QuoteRow, newsletter: boolean) {
       email: row.email,
       listIds,
       updateEnabled: true,
-      attributes: { FIRSTNAME: first, LASTNAME: rest.join(" "), LANGUAGE: row.locale === "en" ? "EN" : "ES" },
+      attributes: { NOMBRE: first, APELLIDOS: rest.join(" ") },
     }),
   });
   if (!res.ok && res.status !== 204) console.error("[quote] Brevo contact error", res.status, await res.text());
