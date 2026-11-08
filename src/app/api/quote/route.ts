@@ -60,20 +60,28 @@ async function notify(row: Record<string, unknown>, id: string) {
   if (!apiKey) return;
   const sender = { name: "Nina Marquina", email: process.env.BREVO_SENDER_EMAIL ?? site.email };
   const to = process.env.QUOTE_NOTIFY_EMAIL ?? site.email;
+  const cc = (process.env.QUOTE_NOTIFY_CC ?? "")
+    .split(",")
+    .map((e) => e.trim())
+    .filter(Boolean)
+    .map((email) => ({ email }));
   const lines = Object.entries(row)
     .filter(([, v]) => v !== null && v !== "" && !(Array.isArray(v) && v.length === 0))
     .map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0;color:#5E5851">${k}</td><td>${escape(Array.isArray(v) ? v.join(", ") : String(v))}</td></tr>`)
     .join("");
-  const send = (body: object) =>
-    fetch("https://api.brevo.com/v3/smtp/email", {
+  const send = async (body: object) => {
+    const res = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
       headers: { "api-key": apiKey, "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({ sender, ...body }),
     });
+    if (!res.ok) console.error("[quote] brevo error", res.status, await res.text());
+  };
   const es = row.locale !== "en";
   await Promise.all([
     send({
       to: [{ email: to }],
+      ...(cc.length ? { cc } : {}),
       replyTo: { email: row.email, name: row.name },
       subject: `Nueva solicitud de cotización — ${row.name} (${row.service})`,
       htmlContent: `<p>Nueva solicitud <b>${id}</b></p><table>${lines}</table>`,
