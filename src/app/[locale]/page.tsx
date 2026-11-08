@@ -31,7 +31,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       addressRegion: "Miranda",
       addressCountry: "VE",
     },
-    areaServed: ["El Hatillo", "Caracas", "Venezuela", "Madrid", "Punta Cana"],
+    areaServed: ["El Hatillo", "Caracas", "Venezuela", "Punta Cana"],
+    sameAs: Object.values(site.social),
     founder: { "@type": "Person", name: "Nina Marquina", jobTitle: "Arquitecta e Ingeniera Civil" },
   };
 

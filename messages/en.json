@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "Nina Marquina — Architecture & Interiors in El Hatillo, Caracas",
-    "description": "Boutique architecture and interior design studio specialising in colonial restoration, sustainable design and high-end renovations in El Hatillo, Caracas, with projects in Madrid and Punta Cana.",
-    "keywords": "Architect in Caracas, Interior design Caracas, Colonial restoration Venezuela, Architect in Venezuela, Custom kitchens and walk-in closets, Interior design Madrid, Architecture Punta Cana"
+    "description": "Boutique architecture and interior design studio specialising in colonial restoration, sustainable design and high-end renovations in El Hatillo, Caracas, with projects in Punta Cana.",
+    "keywords": "Architect in Caracas, Interior design Caracas, Colonial restoration Venezuela, Architect in Venezuela, Custom kitchens and walk-in closets, Architecture Punta Cana, 3D visualization"
   },
   "nav": {
     "home": "Home",
@@ -30,18 +30,7 @@
   "projects": {
     "label": "Featured projects",
     "viewAll": "View all projects",
-    "items": {
-      "roast-room": {
-        "title": "The Roast Room",
-        "meta": "Madrid · Commercial architecture & interiors",
-        "alt": "Coffee shop interior with marble bar and velvet armchairs"
-      },
-      "casa-patio": {
-        "title": "Casa Patio — El Hatillo",
-        "meta": "El Hatillo · Sustainable colonial restoration",
-        "alt": "Restored colonial house with pool and timber porch"
-      }
-    }
+    "altPrefix": "Project"
   },
   "beforeAfter": {
     "label": "Transformations",
@@ -103,10 +92,22 @@
       }
     ],
     "stories": [
-      { "title": "Lime plaster", "image": "/images/story-1.jpg" },
-      { "title": "Materials", "image": "/images/story-2.jpg" },
-      { "title": "New roof", "image": "/images/story-3.jpg" },
-      { "title": "Joinery", "image": "/images/story-4.jpg" }
+      {
+        "title": "Lime plaster",
+        "image": "/images/story-1.jpg"
+      },
+      {
+        "title": "Materials",
+        "image": "/images/story-2.jpg"
+      },
+      {
+        "title": "New roof",
+        "image": "/images/story-3.jpg"
+      },
+      {
+        "title": "Joinery",
+        "image": "/images/story-4.jpg"
+      }
     ]
   },
   "newsletter": {

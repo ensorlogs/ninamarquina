@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "Nina Marquina — Arquitectura e Interiorismo en El Hatillo, Caracas",
-    "description": "Estudio boutique de arquitectura, interiorismo, rehabilitación colonial y reformas de alto nivel en El Hatillo, Caracas, con proyectos en Madrid y Punta Cana.",
-    "keywords": "Arquitectura en El Hatillo, Interiorismo Caracas, Rehabilitación colonial, Arquitecta en Venezuela, Diseño de cocinas y walk-in closets, Interiorismo Madrid, Arquitectura Punta Cana"
+    "description": "Estudio boutique de arquitectura, interiorismo, rehabilitación colonial y reformas de alto nivel en El Hatillo, Caracas, con proyectos en Punta Cana.",
+    "keywords": "Arquitectura en El Hatillo, Interiorismo Caracas, Rehabilitación colonial, Arquitecta en Venezuela, Diseño de cocinas y walk-in closets, Arquitectura Punta Cana, Visualización 3D"
   },
   "nav": {
     "home": "Inicio",
@@ -30,18 +30,7 @@
   "projects": {
     "label": "Proyectos destacados",
     "viewAll": "Ver todos los proyectos",
-    "items": {
-      "roast-room": {
-        "title": "The Roast Room",
-        "meta": "Madrid · Arquitectura comercial e interiorismo",
-        "alt": "Interior de cafetería con barra de mármol y butacas de terciopelo"
-      },
-      "casa-patio": {
-        "title": "Casa Patio — El Hatillo",
-        "meta": "El Hatillo · Rehabilitación colonial y sostenible",
-        "alt": "Casa colonial rehabilitada con piscina y corredor de madera"
-      }
-    }
+    "altPrefix": "Proyecto"
   },
   "beforeAfter": {
     "label": "Transformaciones",
@@ -103,10 +92,22 @@
       }
     ],
     "stories": [
-      { "title": "Revoco de cal", "image": "/images/story-1.jpg" },
-      { "title": "Materiales", "image": "/images/story-2.jpg" },
-      { "title": "Cubierta nueva", "image": "/images/story-3.jpg" },
-      { "title": "Carpintería", "image": "/images/story-4.jpg" }
+      {
+        "title": "Revoco de cal",
+        "image": "/images/story-1.jpg"
+      },
+      {
+        "title": "Materiales",
+        "image": "/images/story-2.jpg"
+      },
+      {
+        "title": "Cubierta nueva",
+        "image": "/images/story-3.jpg"
+      },
+      {
+        "title": "Carpintería",
+        "image": "/images/story-4.jpg"
+      }
     ]
   },
   "newsletter": {
