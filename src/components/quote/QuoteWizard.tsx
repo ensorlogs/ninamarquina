@@ -6,17 +6,22 @@ import { useRef, useState, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import {
   BUDGETS,
+  CARACAS_ZONES,
+  CITIES,
   CONTACT_PREFS,
+  COUNTRIES,
   EMAIL_RE,
   FILE_TYPES,
-  LOCATIONS,
   MAX_FILE_BYTES,
   MAX_FILES,
   NEEDS,
   PROPERTY_STATUS,
   PROPERTY_TYPES,
   SERVICES,
+  PLACE_NAMES,
   TIMELINES,
+  formatLocation,
+  locationError,
   type QuoteInput,
 } from "@/lib/quote";
 import { site } from "@/lib/site";
@@ -49,7 +54,9 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
     propertyType: "",
     propertyStatus: "",
     area: "",
-    location: "",
+    country: "",
+    city: "",
+    cityOther: "",
     zone: "",
     needs: [],
     description: "",
@@ -68,10 +75,14 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
 
   const set = <K extends keyof QuoteInput>(k: K, v: QuoteInput[K]) => setQ((p) => ({ ...p, [k]: v }));
   const opt = (group: string, key: string) => t(`options.${group}.${key}`);
+  const place = (k: string) => (k === "otra" ? t("options.place.otra") : PLACE_NAMES[k]);
+  const [zoneOther, setZoneOther] = useState(false);
+  const cities = q.country ? CITIES[q.country] : undefined;
+  const zoneKey = CARACAS_ZONES.find((k) => k !== "otra" && PLACE_NAMES[k] === q.zone) ?? (zoneOther ? "otra" : "");
 
   const valid = [
     !!q.service,
-    !!q.propertyType && !!q.location,
+    !!q.propertyType && !locationError(q),
     true,
     !!q.budget && !!q.timeline,
     true,
@@ -161,7 +172,7 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
     [t("steps.service.title"), q.service && opt("service", q.service)],
     [t("fields.propertyType"), q.propertyType && opt("propertyType", q.propertyType)],
     [t("fields.area"), q.area && `${q.area} m²`],
-    [t("fields.location"), [q.location && opt("location", q.location), q.zone].filter(Boolean).join(" · ")],
+    [t("fields.location"), [q.country && formatLocation(q, q.country === "otro" ? "" : opt("country", q.country)), q.zone].filter(Boolean).join(" · ")],
     [t("fields.needs"), q.needs.map((n) => opt("needs", n)).join(", ")],
     [t("fields.budget"), q.budget && opt("budget", q.budget)],
     [t("fields.timeline"), q.timeline && opt("timeline", q.timeline)],
@@ -215,13 +226,54 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
               <Field label={t("fields.propertyStatus")} optional={t("optional")}>
                 <Pills options={PROPERTY_STATUS} value={q.propertyStatus} onChange={(v) => set("propertyStatus", v)} label={(k) => opt("propertyStatus", k)} />
               </Field>
-              <Field label={t("fields.location")}>
-                <Pills options={LOCATIONS} value={q.location} onChange={(v) => set("location", v)} label={(k) => opt("location", k)} />
+              <Field label={t("fields.country")}>
+                <Pills
+                  options={COUNTRIES}
+                  value={q.country}
+                  onChange={(v) => {
+                    setQ((p) => ({ ...p, country: v, city: "", cityOther: "", zone: "" }));
+                    setZoneOther(false);
+                  }}
+                  label={(k) => opt("country", k)}
+                />
               </Field>
-              <div className="grid gap-8 md:grid-cols-2">
-                <Field label={t("fields.zone")} optional={t("optional")}>
-                  <input className="input" value={q.zone} onChange={(e) => set("zone", e.target.value)} placeholder="La Lagunita, Alto Hatillo…" />
+              {cities && (
+                <Field label={t("fields.city")}>
+                  <Pills
+                    options={cities}
+                    value={q.city}
+                    onChange={(v) => {
+                      setQ((p) => ({ ...p, city: v, cityOther: "", zone: "" }));
+                      setZoneOther(false);
+                    }}
+                    label={place}
+                  />
                 </Field>
+              )}
+              {q.country && (!cities || q.city === "otra") && (
+                <Field label={t(q.country === "otro" ? "fields.countryCity" : "fields.cityName")}>
+                  <input className="input max-w-md" value={q.cityOther} onChange={(e) => set("cityOther", e.target.value)} />
+                </Field>
+              )}
+              {q.city === "caracas" && (
+                <Field label={t("fields.zone")} optional={t("optional")}>
+                  <Pills
+                    options={CARACAS_ZONES}
+                    value={zoneKey}
+                    onChange={(v) => {
+                      setZoneOther(v === "otra");
+                      set("zone", v === "otra" ? "" : PLACE_NAMES[v]);
+                    }}
+                    label={place}
+                  />
+                </Field>
+              )}
+              <div className="grid gap-8 md:grid-cols-2">
+                {q.country && (q.city !== "caracas" || zoneOther) && (
+                  <Field label={t("fields.zone")} optional={t("optional")}>
+                    <input className="input" value={q.zone} onChange={(e) => set("zone", e.target.value)} placeholder={q.city === "caracas" ? "Los Naranjos, Oripoto…" : ""} />
+                  </Field>
+                )}
                 <Field label={t("fields.area")} optional={t("optional")}>
                   <input className="input" inputMode="numeric" value={q.area} onChange={(e) => set("area", e.target.value.replace(/[^\d]/g, ""))} placeholder="120" />
                 </Field>

@@ -261,7 +261,11 @@
       "phone": "Phone / WhatsApp",
       "contactPref": "I prefer to be contacted by",
       "consent": "I agree that Nina Marquina may use this data to respond to my request.",
-      "newsletter": "I want to receive ideas, projects and news from Nina Marquina by email."
+      "newsletter": "I want to receive ideas, projects and news from Nina Marquina by email.",
+      "country": "Country",
+      "city": "City",
+      "cityName": "Which city?",
+      "countryCity": "Country and city"
     },
     "drop": {
       "title": "Drag your files here",
@@ -345,6 +349,15 @@
         "whatsapp": "WhatsApp",
         "email": "Email",
         "llamada": "Phone call"
+      },
+      "country": {
+        "ve": "Venezuela",
+        "do": "Dominican Republic",
+        "us": "United States",
+        "otro": "Other country"
+      },
+      "place": {
+        "otra": "Other"
       }
     },
     "success": {
@@ -357,5 +370,12 @@
       "generic": "We couldn't send your request. Please try again or email us at {email}.",
       "upload": "Some files couldn't be uploaded. Check your connection and try again."
     }
+  },
+  "instagram": {
+    "label": "Instagram",
+    "title": "Follow us on <em>Instagram</em>",
+    "body": "Process, renders and work in progress. Join the @ninamarquina.arq community.",
+    "follow": "Follow on Instagram",
+    "post": "View post on Instagram"
   }
 }

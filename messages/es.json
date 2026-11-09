@@ -261,7 +261,11 @@
       "phone": "Teléfono / WhatsApp",
       "contactPref": "Prefiero que me contacten por",
       "consent": "Acepto que Nina Marquina use estos datos para responder a mi solicitud.",
-      "newsletter": "Quiero recibir ideas, proyectos y novedades de Nina Marquina por email."
+      "newsletter": "Quiero recibir ideas, proyectos y novedades de Nina Marquina por email.",
+      "country": "País",
+      "city": "Ciudad",
+      "cityName": "¿En qué ciudad?",
+      "countryCity": "País y ciudad"
     },
     "drop": {
       "title": "Arrastra tus archivos aquí",
@@ -345,6 +349,15 @@
         "whatsapp": "WhatsApp",
         "email": "Email",
         "llamada": "Llamada"
+      },
+      "country": {
+        "ve": "Venezuela",
+        "do": "República Dominicana",
+        "us": "Estados Unidos",
+        "otro": "Otro país"
+      },
+      "place": {
+        "otra": "Otra"
       }
     },
     "success": {
@@ -357,5 +370,12 @@
       "generic": "No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos a {email}.",
       "upload": "No pudimos subir algunos archivos. Revisa tu conexión e inténtalo de nuevo."
     }
+  },
+  "instagram": {
+    "label": "Instagram",
+    "title": "Síguenos en <em>Instagram</em>",
+    "body": "Procesos, renders y obra en tiempo real. Únete a la comunidad de @ninamarquina.arq.",
+    "follow": "Seguir en Instagram",
+    "post": "Ver publicación en Instagram"
   }
 }

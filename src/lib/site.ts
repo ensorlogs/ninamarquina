@@ -3,7 +3,7 @@ export const site = {
   tagline: "Architecture & Interiors",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ninamarquina.com",
   email: "hello@ninamarquina.com",
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "",
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "+34 687 22 75 62",
   locations: ["El Hatillo", "Caracas", "Punta Cana"],
   social: {
     instagram: "https://www.instagram.com/ninamarquina.arq",

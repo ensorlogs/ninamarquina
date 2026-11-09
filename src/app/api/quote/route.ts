@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { type QuoteInput, validateQuote } from "@/lib/quote";
+import { formatLocation, type QuoteInput, validateQuote } from "@/lib/quote";
 import { site } from "@/lib/site";
 import { clientQuoteEmail, internalQuoteEmail, type QuoteRow } from "@/lib/emails";
 import { QUOTE_BUCKET, supabaseAdmin } from "@/lib/supabase-admin";
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     property_type: q.propertyType,
     property_status: q.propertyStatus || null,
     area_m2: Number(q.area) > 0 ? Math.min(Number(q.area), 1_000_000) : null,
-    location: q.location,
+    location: formatLocation({ country: q.country!, city: q.city ?? "", cityOther: q.cityOther ?? "" }),
     zone: clip(q.zone, 120) || null,
     needs: q.needs,
     description: clip(q.description, 4000) || null,

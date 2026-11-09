@@ -1,7 +1,52 @@
 export const SERVICES = ["reformas", "arquitectura", "construccion", "interiorismo", "render3d", "otro"] as const;
 export const PROPERTY_TYPES = ["casa", "apartamento", "townhouse", "local", "oficina", "terreno", "otro"] as const;
 export const PROPERTY_STATUS = ["existente", "nuevo", "compra"] as const;
-export const LOCATIONS = ["elhatillo", "caracas", "miranda", "puntacana", "otro"] as const;
+export const COUNTRIES = ["ve", "do", "us", "otro"] as const;
+export const CITIES: Partial<Record<(typeof COUNTRIES)[number], readonly string[]>> = {
+  ve: ["caracas", "valencia", "barquisimeto", "maracaibo", "maracay", "puertolacruz", "lecheria", "otra"],
+  do: ["puntacana", "santodomingo", "santiago", "laromana", "otra"],
+};
+export const CARACAS_ZONES = [
+  "elhatillo",
+  "altohatillo",
+  "lalagunita",
+  "latrinidad",
+  "baruta",
+  "chacao",
+  "altamira",
+  "lacastellana",
+  "lospalosgrandes",
+  "lasmercedes",
+  "pradosdeleste",
+  "santafe",
+  "otra",
+] as const;
+export const PLACE_NAMES: Record<string, string> = {
+  caracas: "Caracas",
+  valencia: "Valencia",
+  barquisimeto: "Barquisimeto",
+  maracaibo: "Maracaibo",
+  maracay: "Maracay",
+  puertolacruz: "Puerto La Cruz",
+  lecheria: "Lechería",
+  puntacana: "Punta Cana",
+  santodomingo: "Santo Domingo",
+  santiago: "Santiago",
+  laromana: "La Romana",
+  elhatillo: "El Hatillo",
+  altohatillo: "Alto Hatillo",
+  lalagunita: "La Lagunita",
+  latrinidad: "La Trinidad",
+  baruta: "Baruta",
+  chacao: "Chacao",
+  altamira: "Altamira",
+  lacastellana: "La Castellana",
+  lospalosgrandes: "Los Palos Grandes",
+  lasmercedes: "Las Mercedes",
+  pradosdeleste: "Prados del Este",
+  santafe: "Santa Fe",
+};
+const COUNTRY_NAMES_ES: Record<string, string> = { ve: "Venezuela", do: "República Dominicana", us: "Estados Unidos", otro: "" };
 export const NEEDS = [
   "cocina",
   "banos",
@@ -32,7 +77,9 @@ export type QuoteInput = {
   propertyType: (typeof PROPERTY_TYPES)[number] | "";
   propertyStatus: (typeof PROPERTY_STATUS)[number] | "";
   area: string;
-  location: (typeof LOCATIONS)[number] | "";
+  country: (typeof COUNTRIES)[number] | "";
+  city: string;
+  cityOther: string;
   zone: string;
   needs: string[];
   description: string;
@@ -57,7 +104,7 @@ const oneOf = <T extends readonly string[]>(list: T, v: unknown): v is T[number]
 export function validateQuote(q: Partial<QuoteInput>): string | null {
   if (!oneOf(SERVICES, q.service)) return "service";
   if (!oneOf(PROPERTY_TYPES, q.propertyType)) return "propertyType";
-  if (!oneOf(LOCATIONS, q.location)) return "location";
+  if (locationError(q)) return "location";
   if (!Array.isArray(q.needs) || q.needs.some((n) => !oneOf(NEEDS, n))) return "needs";
   if (!oneOf(BUDGETS, q.budget)) return "budget";
   if (!oneOf(TIMELINES, q.timeline)) return "timeline";
@@ -68,4 +115,21 @@ export function validateQuote(q: Partial<QuoteInput>): string | null {
   if (!Array.isArray(q.files) || q.files.length > MAX_FILES || q.files.some((f) => !/^requests\/[\w-]+\/[\w.-]+$/.test(f)))
     return "files";
   return null;
+}
+
+const needsCityText = (q: Pick<QuoteInput, "country" | "city">) => !CITIES[q.country as keyof typeof CITIES] || q.city === "otra";
+
+export function locationError(q: Partial<QuoteInput>): boolean {
+  if (!oneOf(COUNTRIES, q.country)) return true;
+  const cities = CITIES[q.country];
+  if (cities && !oneOf(cities, q.city)) return true;
+  if (needsCityText({ country: q.country, city: q.city ?? "" }) && (q.cityOther ?? "").trim().length < 2) return true;
+  return false;
+}
+
+/** "Venezuela · Caracas" — country name is passed in so the UI can localise it. */
+export function formatLocation(q: Pick<QuoteInput, "country" | "city" | "cityOther">, countryName?: string) {
+  const country = countryName ?? COUNTRY_NAMES_ES[q.country] ?? "";
+  const city = needsCityText(q) ? q.cityOther.trim().slice(0, 80) : PLACE_NAMES[q.city] ?? "";
+  return [country, city].filter(Boolean).join(" · ");
 }

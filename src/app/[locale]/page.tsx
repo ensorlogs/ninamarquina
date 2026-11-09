@@ -5,6 +5,7 @@ import { Hero } from "@/components/home/Hero";
 import { Journal } from "@/components/home/Journal";
 import { Mirada } from "@/components/home/Mirada";
 import { Newsletter } from "@/components/home/Newsletter";
+import { InstagramFeed } from "@/components/home/InstagramFeed";
 import { Philosophy } from "@/components/home/Philosophy";
 import { Services } from "@/components/home/Services";
 import { Studio } from "@/components/home/Studio";
@@ -63,6 +64,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <Studio />
         <Journal />
         <Newsletter />
+        <InstagramFeed />
       </main>
     </>
   );
