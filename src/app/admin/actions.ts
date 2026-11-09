@@ -144,7 +144,7 @@ export async function sendBudgetEmail(id: string) {
     body: JSON.stringify({
       sender: { name: "Nina Marquina", email: process.env.BREVO_SENDER_EMAIL ?? site.email },
       to: [{ email: b.clients.email, name: b.clients.name }],
-      cc: (process.env.QUOTE_NOTIFY_CC ?? "").split(",").map((e) => e.trim()).filter(Boolean).map((email) => ({ email })),
+      bcc: (process.env.QUOTE_NOTIFY_CC ?? "").split(",").map((e) => e.trim()).filter(Boolean).map((email) => ({ email })),
       replyTo: { email: site.email, name: "Nina Marquina" },
       subject: mail.subject,
       htmlContent: mail.html,

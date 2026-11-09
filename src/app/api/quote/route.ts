@@ -62,7 +62,7 @@ async function notify(supabase: NonNullable<ReturnType<typeof supabaseAdmin>>, r
   if (!apiKey) return;
   const sender = { name: "Nina Marquina", email: process.env.BREVO_SENDER_EMAIL ?? site.email };
   const to = process.env.QUOTE_NOTIFY_EMAIL ?? site.email;
-  const cc = (process.env.QUOTE_NOTIFY_CC ?? "")
+  const bcc = (process.env.QUOTE_NOTIFY_CC ?? "")
     .split(",")
     .map((e) => e.trim())
     .filter(Boolean)
@@ -90,7 +90,7 @@ async function notify(supabase: NonNullable<ReturnType<typeof supabaseAdmin>>, r
   await Promise.all([
     send({
       to: [{ email: to }],
-      ...(cc.length ? { cc } : {}),
+      ...(bcc.length ? { bcc } : {}),
       replyTo: { email: row.email, name: row.name },
       subject: internal.subject,
       htmlContent: internal.html,
@@ -98,6 +98,7 @@ async function notify(supabase: NonNullable<ReturnType<typeof supabaseAdmin>>, r
     }),
     send({
       to: [{ email: row.email, name: row.name }],
+      ...(bcc.length ? { bcc } : {}),
       replyTo: { email: site.email, name: "Nina Marquina" },
       subject: client.subject,
       htmlContent: client.html,
