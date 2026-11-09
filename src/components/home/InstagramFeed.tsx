@@ -32,21 +32,21 @@ export async function InstagramFeed() {
             <IgIcon className="h-4 w-4" /> {t("follow")} <Arrow className="arrow" />
           </a>
         </div>
-        <div className="grid grid-cols-3 gap-1.5 md:grid-cols-6 md:gap-2">
-          {posts.map((p, i) => (
+        <div className="grid grid-cols-2 gap-1.5 md:grid-cols-4 md:gap-2">
+          {posts.map((p) => (
             <a
               key={p.href}
               href={p.href}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("post")}
-              className={`group relative aspect-square overflow-hidden bg-stone ${i >= 6 ? "hidden md:block" : ""}`}
+              className="group relative aspect-square overflow-hidden bg-stone"
             >
               <Image
                 src={p.image}
                 alt=""
                 fill
-                sizes="(min-width: 768px) 16vw, 33vw"
+                sizes="(min-width: 768px) 25vw, 50vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
               />
               <span className="absolute inset-0 flex items-center justify-center bg-espresso/0 text-white opacity-0 transition-all duration-300 group-hover:bg-espresso/45 group-hover:opacity-100">
