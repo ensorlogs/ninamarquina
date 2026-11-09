@@ -7,7 +7,21 @@ import { Arrow } from "../ui/Arrow";
 
 export type CarouselItem = { slug: string; title: string; meta: string; image: string; alt: string };
 
-export function ProjectsCarousel({ items, labels }: { items: CarouselItem[]; labels: { prev: string; next: string } }) {
+type Props = {
+  items: CarouselItem[];
+  labels: { prev: string; next: string };
+  basePath?: string;
+  cols?: 2 | 3;
+  metaFirst?: boolean;
+};
+
+const layouts = {
+  2: { card: "w-[86%] md:w-[calc((100%-1.75rem)/2)]", aspect: "aspect-[16/9]", sizes: "(min-width: 768px) 50vw, 86vw", title: "text-[26px] md:text-[28px]" },
+  3: { card: "w-[86%] md:w-[calc((100%-3.5rem)/3)]", aspect: "aspect-[4/3]", sizes: "(min-width: 768px) 33vw, 86vw", title: "text-[24px]" },
+};
+
+export function ProjectsCarousel({ items, labels, basePath = "/proyectos", cols = 2, metaFirst = false }: Props) {
+  const layout = layouts[cols];
   const track = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -65,24 +79,25 @@ export function ProjectsCarousel({ items, labels }: { items: CarouselItem[]; lab
         {items.map((p, i) => (
           <Link
             key={p.slug}
-            href={`/proyectos/${p.slug}`}
+            href={`${basePath}/${p.slug}`}
             data-card
-            className="group block w-[86%] shrink-0 snap-start md:w-[calc((100%-1.75rem)/2)]"
+            className={`group block shrink-0 snap-start ${layout.card}`}
             aria-label={`${p.title} (${i + 1}/${items.length})`}
           >
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-stone">
+            <div className={`relative w-full overflow-hidden bg-stone ${layout.aspect}`}>
               <Image
                 src={p.image}
                 alt={p.alt}
                 fill
-                sizes="(min-width: 768px) 50vw, 86vw"
+                sizes={layout.sizes}
                 className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
               />
             </div>
-            <div className="mt-5 flex items-start justify-between gap-4">
+            {metaFirst && <p className="label mt-5 text-muted">{p.meta}</p>}
+            <div className={`flex items-start justify-between gap-4 ${metaFirst ? "mt-2" : "mt-5"}`}>
               <div>
-                <h3 className="font-serif text-[26px] leading-tight md:text-[28px]">{p.title}</h3>
-                <p className="label mt-2 text-muted">{p.meta}</p>
+                <h3 className={`font-serif leading-tight ${layout.title}`}>{p.title}</h3>
+                {!metaFirst && <p className="label mt-2 text-muted">{p.meta}</p>}
               </div>
               <Arrow
                 direction="up-right"

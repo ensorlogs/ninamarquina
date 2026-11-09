@@ -3,6 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { formatDate, posts } from "@/data/posts";
 import { Arrow } from "../ui/Arrow";
+import { ProjectsCarousel } from "./ProjectsCarousel";
 import { Stories, type Story } from "./Stories";
 
 export async function Journal() {
@@ -12,7 +13,7 @@ export async function Journal() {
   const stories = t.raw("stories") as Story[];
 
   return (
-    <section id="journal" className="scroll-mt-20 bg-ivory py-20 md:py-28">
+    <section id="journal" className="scroll-mt-20 overflow-hidden bg-ivory py-20 md:py-28">
       <div className="container-site">
         <div className="mb-8 flex items-center justify-between gap-6">
           <p className="label text-muted">{t("label")}</p>
@@ -21,11 +22,21 @@ export async function Journal() {
           </Link>
         </div>
 
-        <div className="grid gap-12 md:grid-cols-3 md:gap-7">
-          {posts.slice(0, 3).map((post) => (
-            <PostCard key={post.slug} post={post} meta={`${formatDate(post.date, locale)} · ${tp("minutes", { n: post.minutes })}`} />
-          ))}
-        </div>
+        <ProjectsCarousel
+          items={posts
+            .filter((post) => post.cover)
+            .map((post) => ({
+              slug: post.slug,
+              title: post.title,
+              meta: `${formatDate(post.date, locale)} · ${tp("minutes", { n: post.minutes })}`,
+              image: post.cover as string,
+              alt: post.title,
+            }))}
+          labels={{ prev: t("prev"), next: t("next") }}
+          basePath="/journal"
+          cols={3}
+          metaFirst
+        />
 
         <div className="mt-20 border-t border-black/10 pt-12 md:mt-24">
           <div className="mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
