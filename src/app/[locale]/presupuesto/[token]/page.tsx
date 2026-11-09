@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PrintButton } from "@/components/admin/PrintButton";
+import { BudgetSignature } from "@/components/BudgetSignature";
+import { site } from "@/lib/site";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
 export const dynamic = "force-dynamic";
@@ -57,7 +59,8 @@ export default async function PublicBudget({ params }: { params: Promise<{ token
           <p className="flex justify-between border-t border-black/15 pt-3 font-serif text-[26px]"><span>Total</span>{money(sub + tax)}</p>
         </div>
         {b.notes && <p className="mt-12 whitespace-pre-line text-[13px] leading-[1.75] text-muted">{b.notes}</p>}
-        <p className="mt-12 border-t border-black/10 pt-6 text-[12px] text-muted">hello@ninamarquina.com · El Hatillo · Caracas · Punta Cana</p>
+        <BudgetSignature />
+        <p className="mt-12 border-t border-black/10 pt-6 text-[12px] text-muted">hello@ninamarquina.com · {site.locations.join(" · ")}</p>
       </article>
       <div className="mx-auto mt-8 max-w-4xl text-center print:hidden"><PrintButton /></div>
     </section>

@@ -3,6 +3,8 @@
 import { useState, useTransition } from "react";
 import { markBudgetSent, saveBudget, sendBudgetEmail } from "@/app/admin/actions";
 import { BUDGET_STATUS } from "@/lib/admin-labels";
+import { BudgetSignature } from "@/components/BudgetSignature";
+import { site } from "@/lib/site";
 
 type Item = { description: string; quantity: number; unit: string; unit_price: number };
 type Budget = {
@@ -75,7 +77,7 @@ export function BudgetEditor({ budget }: { budget: Budget }) {
           <div>
             <p className="font-serif text-[22px] tracking-[0.3em]">NINA MARQUINA</p>
             <p className="label mt-1 text-[9px] text-muted">Architecture &amp; Interiors</p>
-            <p className="mt-4 text-[12px] text-muted">hello@ninamarquina.com · El Hatillo · Caracas · Punta Cana</p>
+            <p className="mt-4 text-[12px] text-muted">hello@ninamarquina.com · {site.locations.join(" · ")}</p>
           </div>
           <div className="text-right">
             <p className="label text-clay">Presupuesto #{budget.number}</p>
@@ -118,6 +120,7 @@ export function BudgetEditor({ budget }: { budget: Budget }) {
           <p className="flex justify-between border-t border-black/15 pt-3 font-serif text-[24px]"><span>Total</span>{money(sub + tax)}</p>
         </div>
         <textarea value={meta.notes} onChange={(e) => setMeta({ ...meta, notes: e.target.value })} placeholder="Condiciones, plazos, forma de pago…" className="mt-10 min-h-[100px] w-full resize-none bg-transparent text-[13px] leading-[1.7] text-muted outline-none" />
+        <BudgetSignature />
       </article>
     </div>
   );

@@ -69,6 +69,7 @@ export default async function StudioPage({ params }: Props) {
               <p key={p}>{p}</p>
             ))}
           </div>
+          <Image src="/images/firma-nina.png" alt={`Firma de Nina Marquina`} width={900} height={239} className="mt-10 h-auto w-44 md:w-52" />
 
           <p className="label mb-6 mt-16 text-muted">{t("helpLabel")}</p>
           <ol className="border-t border-black/10">

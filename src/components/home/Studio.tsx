@@ -26,6 +26,14 @@ export async function Studio() {
             sizes="(min-width: 768px) 40vw, 100vw"
             className="object-cover object-[50%_30%]"
           />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/55 to-transparent" />
+          <Image
+            src="/images/firma-nina-blanca.png"
+            alt=""
+            width={900}
+            height={239}
+            className="absolute bottom-6 right-6 h-auto w-36 drop-shadow md:bottom-8 md:right-8 md:w-44"
+          />
         </div>
       </div>
     </section>

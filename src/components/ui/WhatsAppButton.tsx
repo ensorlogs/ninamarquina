@@ -17,7 +17,7 @@ export async function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t("whatsapp.label")}
-      className="group fixed bottom-5 right-5 z-40 flex h-13 w-13 items-center justify-center rounded-full bg-charcoal/90 text-ivory shadow-[0_8px_30px_rgba(0,0,0,0.18)] backdrop-blur transition-all hover:bg-clay md:bottom-8 md:right-8"
+      className="group fixed bottom-5 right-5 z-40 flex print:hidden h-13 w-13 items-center justify-center rounded-full bg-charcoal/90 text-ivory shadow-[0_8px_30px_rgba(0,0,0,0.18)] backdrop-blur transition-all hover:bg-clay md:bottom-8 md:right-8"
     >
       <WhatsAppIcon />
       <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-full bg-charcoal px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-ivory opacity-0 transition-opacity group-hover:opacity-100">
