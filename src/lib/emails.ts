@@ -184,7 +184,7 @@ export function clientQuoteEmail(row: QuoteRow) {
         subject: "We've received your request — Nina Marquina",
         kicker: "Request received",
         title: `Thank you, <i>${first}</i>.`,
-        p1: "Thank you for telling us about your project. Stephany will personally review your request and get back to you within 48 hours.",
+        p1: "Thank you for telling us about your project. Nina will personally review your request and get back to you within 48 hours.",
         summary: "Your request",
         next: "What happens next",
         steps: ["We review your project and references.", "We contact you to talk it through.", "We prepare a tailored proposal."],
@@ -195,7 +195,7 @@ export function clientQuoteEmail(row: QuoteRow) {
         subject: "Hemos recibido tu solicitud — Nina Marquina",
         kicker: "Solicitud recibida",
         title: `Gracias, <i>${first}</i>.`,
-        p1: "Gracias por contarnos tu proyecto. Stephany revisará personalmente tu solicitud y te contactará en menos de 48 horas.",
+        p1: "Gracias por contarnos tu proyecto. Nina revisará personalmente tu solicitud y te contactará en menos de 48 horas.",
         summary: "Tu solicitud",
         next: "Próximos pasos",
         steps: ["Revisamos tu proyecto y tus referencias.", "Te contactamos para conversarlo.", "Preparamos una propuesta a tu medida."],
@@ -232,7 +232,8 @@ ${section(t.summary, [
   };
 }
 
-export function loginEmail(link: string) {
+export function loginEmail(link: string, portal = false) {
+  if (portal) return portalEmail(link);
   const body = `<p style="margin:0;font-size:15px;line-height:1.75;color:${C.muted}">Pulsa el botón para entrar al panel de Nina Marquina. El enlace es personal, sirve una sola vez y caduca en 1 hora.</p>
 <div style="margin-top:30px">${button(link, "Entrar al panel", C.clay)}</div>
 <p style="margin-top:28px;font-size:12px;color:${C.muted}">Si no lo has pedido tú, ignora este email.</p>`;
@@ -263,6 +264,25 @@ export function budgetEmail(b: { name: string; title: string; number: number; to
       hero: `<tr><td style="padding:36px 40px 0"><div style="font-family:${SANS};font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:${C.clay}">Propuesta</div><div style="font-family:${SERIF};font-size:38px;line-height:1.1;margin-top:12px;color:${C.charcoal}">Tu <i>presupuesto</i>.</div></td></tr>`,
       body,
       footerNote: "Recibes este email porque solicitaste una propuesta a Nina Marquina.",
+    }),
+  };
+}
+
+export function portalEmail(link: string, invite?: { name: string }) {
+  const first = invite ? esc(invite.name.split(" ")[0]) : "";
+  const intro = invite
+    ? `Hola ${first}, ya tienes acceso a tu área de cliente de Nina Marquina. Allí podrás seguir tu proyecto por fases, ver los avances de obra con fotos y consultar tus presupuestos.`
+    : "Pulsa el botón para entrar a tu área de cliente de Nina Marquina.";
+  const body = `<p style="margin:0;font-size:15px;line-height:1.75;color:${C.muted}">${intro}</p>
+<div style="margin-top:30px">${button(link, "Entrar a mi área", C.clay)}</div>
+<p style="margin-top:28px;font-size:12px;line-height:1.7;color:${C.muted}">El enlace es personal, sirve una sola vez y caduca en 1 hora. Cuando quieras volver a entrar, pide uno nuevo en <a href="${site.url}/acceso" style="color:${C.clay}">${site.url.replace(/^https?:\/\//, "")}/acceso</a> con este mismo email.</p>`;
+  return {
+    subject: invite ? "Bienvenida a tu área de cliente — Nina Marquina" : "Tu acceso — Nina Marquina",
+    html: layout({
+      preheader: invite ? "Sigue tu proyecto paso a paso" : "Enlace de acceso a tu área de cliente",
+      hero: `<tr><td style="padding:36px 40px 0"><div style="font-family:${SANS};font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:${C.clay}">Área de cliente</div><div style="font-family:${SERIF};font-size:36px;line-height:1.1;margin-top:12px">${invite ? "Tu proyecto, <i>paso a paso</i>." : "Tu enlace de <i>acceso</i>."}</div></td></tr>`,
+      body,
+      footerNote: "Email de acceso al área de clientes de Nina Marquina.",
     }),
   };
 }

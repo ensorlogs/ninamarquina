@@ -100,11 +100,11 @@ export const projectDetails: Record<string, ProjectDetails> = {
         title: { es: "El concepto", en: "The concept" },
         body: {
           es: [
-            "Los Townhouses White & Onyx son uno de los proyectos favoritos de Stephany: un conjunto de villas adosadas con un toque de arquitectura neoclásica, reinterpretada con una mirada contemporánea.",
+            "Los Townhouses White & Onyx son uno de los proyectos favoritos de Nina: un conjunto de villas adosadas con un toque de arquitectura neoclásica, reinterpretada con una mirada contemporánea.",
             "El proyecto juega con dos versiones hermanas de la misma vivienda, que comparten volumetría pero tienen carácter propio.",
           ],
           en: [
-            "Townhouses White & Onyx is one of Stephany's favourite projects: a set of terraced villas with a neoclassical touch, reinterpreted through a contemporary lens.",
+            "Townhouses White & Onyx is one of Nina's favourite projects: a set of terraced villas with a neoclassical touch, reinterpreted through a contemporary lens.",
             "The project plays with two sister versions of the same home, sharing a volume but each with its own character.",
           ],
         },

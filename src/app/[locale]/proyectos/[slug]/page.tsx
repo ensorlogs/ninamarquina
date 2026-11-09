@@ -61,7 +61,7 @@ export default async function ProjectPage({ params }: Props) {
           dateCreated: String(p.year),
           genre: p.category[l],
           ...(p.location ? { locationCreated: { "@type": "Place", name: p.location } } : {}),
-          creator: { "@type": "Person", name: "Stephany Marquina", worksFor: { "@type": "Organization", name: "Nina Marquina" } },
+          creator: { "@type": "Person", name: "Nina Marquina", worksFor: { "@type": "Organization", name: "Nina Marquina" } },
           url: `${site.url}/${locale}/proyectos/${p.slug}`,
         }}
       />

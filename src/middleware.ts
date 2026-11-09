@@ -28,7 +28,7 @@ async function refreshAdminSession(request: NextRequest) {
 export default function middleware(request: NextRequest) {
   const legacy = legacyRedirect(request.nextUrl.pathname);
   if (legacy) return NextResponse.redirect(new URL(legacy, request.url), 308);
-  return request.nextUrl.pathname.startsWith("/admin") ? refreshAdminSession(request) : intl(request);
+  return /^\/(admin|portal|acceso)(\/|$)/.test(request.nextUrl.pathname) ? refreshAdminSession(request) : intl(request);
 }
 
 export const config = {

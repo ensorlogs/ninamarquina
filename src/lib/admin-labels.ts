@@ -21,7 +21,12 @@ export const PROJECT_STATUS: Record<string, string> = {
   cancelled: "Cancelado",
 };
 
+export const PHASE_STATUS: Record<string, string> = { pending: "Pendiente", in_progress: "En curso", done: "Completada" };
+export const DEFAULT_PHASES = ["Diseño", "Permisos", "Obra", "Entrega"];
+
 export const BUDGET_STATUS: Record<string, string> = { draft: "Borrador", sent: "Enviado", accepted: "Aceptado", rejected: "Rechazado" };
+
+export const fmtDay = (d: string) => fmtDate(`${d}T12:00:00`);
 
 export const fmtDate = (d: string) =>
   new Date(d).toLocaleDateString("es-VE", { day: "2-digit", month: "short", year: "numeric", timeZone: "America/Caracas" });

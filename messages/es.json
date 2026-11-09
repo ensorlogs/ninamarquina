@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Arquitecta en El Hatillo, Caracas | Reformas, Arquitectura y Construcción — Nina Marquina",
-    "description": "Estudio de arquitectura, reformas integrales, construcción e interiorismo en El Hatillo y Caracas, con proyectos en Punta Cana. Diseño, visualización 3D y dirección de obra con la arquitecta Stephany Marquina.",
-    "keywords": "arquitecto El Hatillo, arquitecta Caracas, reformas El Hatillo, reformas Caracas, remodelación de casas Caracas, remodelación de apartamentos Caracas, construcción El Hatillo, empresa de construcción Caracas, interiorismo Caracas, diseño de interiores El Hatillo, remodelación de cocinas Caracas, rehabilitación casa colonial El Hatillo, visualización 3D arquitectura, renders arquitectónicos, arquitectura Punta Cana"
+    "title": "Arquitectura, Reformas y Construcción en Venezuela y República Dominicana — Nina Marquina",
+    "description": "Estudio de arquitectura, reformas integrales, construcción e interiorismo en Venezuela y República Dominicana, con oficinas en Caracas y Punta Cana. Diseño, visualización 3D y dirección de obra con la arquitecta Nina Marquina.",
+    "keywords": "arquitecto El Hatillo, arquitecta Caracas, reformas El Hatillo, reformas Caracas, remodelación de casas Caracas, remodelación de apartamentos Caracas, construcción El Hatillo, empresa de construcción Caracas, interiorismo Caracas, diseño de interiores El Hatillo, remodelación de cocinas Caracas, rehabilitación casa colonial El Hatillo, visualización 3D arquitectura, renders arquitectónicos, arquitectura Punta Cana, arquitecto República Dominicana, reformas Santo Domingo, construcción Punta Cana, arquitecto Venezuela"
   },
   "nav": {
     "home": "Inicio",
@@ -13,11 +13,13 @@
     "contact": "Contacto",
     "menu": "Menú",
     "close": "Cerrar",
-    "quote": "Cotizar"
+    "quote": "Cotizar",
+    "login": "Acceder",
+    "clientArea": "Área de clientes"
   },
   "hero": {
     "eyebrow": "Nina Marquina",
-    "title": "Diseñar para la vida que sucede <em>después</em>.",
+    "title": "Las buenas historias también comienzan con un <em>espacio</em>.",
     "tagline": "Architecture & Interiors",
     "discover": "Descubrir",
     "cta": "Cotiza tu proyecto"
@@ -55,10 +57,10 @@
   },
   "studio": {
     "label": "El estudio",
-    "title": "Stephany Marquina, la arquitecta detrás <em>del estudio</em>.",
-    "body": "Arquitecta y diseñadora 3D, Stephany transforma las ideas de sus clientes en espacios integrados y funcionales, donde la experiencia es el elemento principal. Desde los primeros bocetos hasta los planos técnicos, los renders y la obra, cada proyecto sigue un proceso claro e intencional.",
-    "link": "Conocer a Stephany",
-    "imageAlt": "Retrato de la arquitecta Stephany Marquina, fundadora de Nina Marquina"
+    "title": "Nina Marquina, la arquitecta detrás <em>del estudio</em>.",
+    "body": "Arquitecta y diseñadora 3D, Nina transforma las ideas de sus clientes en espacios integrados y funcionales, donde la experiencia es el elemento principal. Desde los primeros bocetos hasta los planos técnicos, los renders y la obra, cada proyecto sigue un proceso claro e intencional.",
+    "link": "Conocer a Nina",
+    "imageAlt": "Retrato de la arquitecta Nina Marquina"
   },
   "journal": {
     "label": "Journal / News",
@@ -115,8 +117,8 @@
   },
   "services": {
     "label": "Servicios",
-    "title": "Arquitectura, reformas y construcción en <em>El Hatillo y Caracas</em>.",
-    "body": "Acompañamos cada proyecto de principio a fin: desde la primera idea y los planos hasta la obra terminada. Trabajamos en El Hatillo, La Lagunita, Alto Hatillo, Baruta, Chacao y el resto de Caracas, y desarrollamos proyectos en Punta Cana.",
+    "title": "Arquitectura, reformas y construcción en <em>Venezuela y República Dominicana</em>.",
+    "body": "Acompañamos cada proyecto de principio a fin: desde la primera idea y los planos hasta la obra terminada. Tenemos oficinas en Venezuela y República Dominicana: trabajamos en Caracas (El Hatillo, La Lagunita, Alto Hatillo, Baruta, Chacao…), Valencia y el resto del país, y en Punta Cana, Santo Domingo y La Romana.",
     "items": [
       {
         "title": "Reformas integrales",
@@ -148,13 +150,13 @@
     "cardCta": "Cotizar"
   },
   "studioPage": {
-    "metaTitle": "Stephany Marquina — Arquitecta en El Hatillo, Caracas | Nina Marquina",
-    "metaDescription": "Conoce a Stephany Marquina, arquitecta y diseñadora 3D fundadora de Nina Marquina: arquitectura, reformas, construcción e interiorismo en El Hatillo, Caracas y Punta Cana.",
+    "metaTitle": "Nina Marquina — Arquitecta en Venezuela y República Dominicana",
+    "metaDescription": "Conoce a Nina Marquina, arquitecta y diseñadora 3D: arquitectura, reformas, construcción e interiorismo en Venezuela y República Dominicana.",
     "label": "El estudio",
-    "title": "Stephany <em>Marquina</em>",
+    "title": "Nina <em>Marquina</em>",
     "role": "Arquitecta y diseñadora 3D · Fundadora",
     "paragraphs": [
-      "Soy Stephany Marquina, arquitecta y diseñadora 3D, y detrás de Nina Marquina estoy yo. Me especializo en el desarrollo y la visualización de proyectos de arquitectura e interiorismo, y trabajo desde El Hatillo para clientes en Caracas y Punta Cana.",
+      "Soy Nina Marquina, arquitecta y diseñadora 3D, y detrás del estudio estoy yo. Me especializo en el desarrollo y la visualización de proyectos de arquitectura e interiorismo, y trabajo desde nuestras oficinas en Venezuela y República Dominicana.",
       "Mi enfoque se centra en transformar las ideas de mis clientes en diseños integrados y funcionales, creando espacios donde la experiencia se convierte en el elemento principal.",
       "Desde los primeros bocetos conceptuales y la planificación espacial hasta el desarrollo de planos técnicos, renders de alta calidad y el acompañamiento en obra, trabajo cada proyecto a través de un proceso estructurado y coherente. Así las ideas evolucionan de forma clara e intencional, con una conexión real entre diseño, funcionalidad y atmósfera.",
       "Al combinar el pensamiento arquitectónico con la visualización 3D avanzada, ayudo a mis clientes a comprender, perfeccionar y experimentar sus proyectos antes de construirlos. Cada espacio se concibe no solo para ser visto, sino para ser vivido."
@@ -171,8 +173,8 @@
     "projectsLink": "Ver proyectos"
   },
   "projectsPage": {
-    "metaTitle": "Proyectos de arquitectura, reformas e interiorismo | Nina Marquina — El Hatillo, Caracas",
-    "metaDescription": "Portfolio de Nina Marquina: villas, townhouses, apartamentos, complejos deportivos y showrooms. Arquitectura, interiorismo y visualización 3D desde El Hatillo, Caracas, hasta Punta Cana.",
+    "metaTitle": "Proyectos de arquitectura, reformas e interiorismo | Nina Marquina — Venezuela y República Dominicana",
+    "metaDescription": "Portfolio de Nina Marquina: villas, townhouses, apartamentos, complejos deportivos y showrooms. Arquitectura, interiorismo y visualización 3D en Venezuela y República Dominicana.",
     "label": "Proyectos",
     "title": "Proyectos <em>seleccionados</em>",
     "intro": "Arquitectura residencial y comercial, interiorismo y visualización 3D: una selección de proyectos desarrollados por el estudio.",
@@ -193,7 +195,7 @@
   },
   "journalPage": {
     "metaTitle": "Journal — Arquitectura, interiorismo y reformas | Nina Marquina",
-    "metaDescription": "Artículos de Stephany Marquina sobre arquitectura, interiorismo, reformas y construcción: tendencias, procesos y encuentros con grandes arquitectos.",
+    "metaDescription": "Artículos de Nina Marquina sobre arquitectura, interiorismo, reformas y construcción: tendencias, procesos y encuentros con grandes arquitectos.",
     "label": "Journal",
     "title": "Ideas, procesos y <em>encuentros</em>",
     "intro": "Reflexiones sobre arquitectura, interiorismo y la forma en que habitamos los espacios.",
@@ -204,8 +206,8 @@
     "spanishOnly": ""
   },
   "quote": {
-    "metaTitle": "Cotiza tu reforma o proyecto de arquitectura en El Hatillo, Caracas | Nina Marquina",
-    "metaDescription": "Solicita un presupuesto para tu reforma, proyecto de arquitectura, construcción, interiorismo o renders 3D en El Hatillo, Caracas y Punta Cana. Responde unas preguntas y sube fotos de tu espacio.",
+    "metaTitle": "Cotiza tu reforma o proyecto de arquitectura en Venezuela y República Dominicana | Nina Marquina",
+    "metaDescription": "Solicita un presupuesto para tu reforma, proyecto de arquitectura, construcción, interiorismo o renders 3D en Venezuela y República Dominicana. Responde unas preguntas y sube fotos de tu espacio.",
     "label": "Cotizador",
     "title": "Cuéntanos tu <em>proyecto</em>.",
     "intro": "Unas pocas preguntas, unos 3 minutos. Con esto preparamos una primera propuesta y te contactamos en menos de 48 horas.",
@@ -362,7 +364,7 @@
     },
     "success": {
       "title": "¡Gracias, {name}!",
-      "body": "Hemos recibido tu solicitud. Stephany la revisará y te contactará en menos de 48 horas.",
+      "body": "Hemos recibido tu solicitud. Nina la revisará y te contactará en menos de 48 horas.",
       "home": "Volver al inicio",
       "projects": "Ver proyectos"
     },

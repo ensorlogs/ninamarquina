@@ -37,6 +37,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       { "@type": "City", name: "Caracas" },
       { "@type": "AdministrativeArea", name: "Miranda, Venezuela" },
       { "@type": "City", name: "Punta Cana" },
+      { "@type": "City", name: "Santo Domingo" },
+      { "@type": "Country", name: "Venezuela" },
+      { "@type": "Country", name: "República Dominicana" },
     ],
     knowsAbout: services.map((s) => s.title),
     hasOfferCatalog: {

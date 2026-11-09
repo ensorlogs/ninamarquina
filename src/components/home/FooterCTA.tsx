@@ -1,3 +1,4 @@
+import NextLink from "next/link";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
@@ -49,6 +50,9 @@ export async function FooterCTA() {
             {site.email}
           </a>
           <p className="label mt-3 text-ivory/65">{site.locations.join(" · ")}</p>
+          <NextLink href="/acceso" className="label mt-3 inline-block text-ivory/65 underline-offset-4 hover:text-ivory hover:underline">
+            {t("nav.login")} · {t("nav.clientArea")}
+          </NextLink>
           <div className="mt-8 flex items-end justify-between gap-10 border-t border-ivory/20 pt-6">
             <Logo light />
             <SocialIcons />

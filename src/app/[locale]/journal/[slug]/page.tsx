@@ -49,7 +49,7 @@ export default async function PostPage({ params }: Props) {
           datePublished: post.date,
           inLanguage: "es",
           image: post.cover ? `${site.url}${post.cover}` : undefined,
-          author: { "@type": "Person", name: "Stephany Marquina", url: site.social.linkedin },
+          author: { "@type": "Person", name: "Nina Marquina", url: site.social.linkedin },
           publisher: { "@type": "Organization", name: "Nina Marquina", url: site.url },
           mainEntityOfPage: url,
         }}
@@ -67,7 +67,7 @@ export default async function PostPage({ params }: Props) {
             <Arrow direction="left" className="arrow" /> {t("back")}
           </Link>
           <p className="label mt-10 text-muted">
-            {formatDate(post.date, locale)} · {t("minutes", { n: post.minutes })} · Stephany Marquina
+            {formatDate(post.date, locale)} · {t("minutes", { n: post.minutes })} · Nina Marquina
           </p>
           <h1 className="display mt-5 text-[40px] md:text-[58px]">{post.title}</h1>
           {t("spanishOnly") && <p className="mt-5 font-serif text-[18px] italic text-muted">{t("spanishOnly")}</p>}

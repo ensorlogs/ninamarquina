@@ -1,5 +1,6 @@
 "use client";
 
+import NextLink from "next/link";
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -59,6 +60,12 @@ export function Header() {
                 {t(item.key)}
               </NavLink>
             ))}
+            <NextLink
+              href="/acceso"
+              className={`text-[10.5px] font-medium uppercase tracking-[0.2em] transition-opacity hover:opacity-60 ${solid ? "opacity-90" : "font-semibold"}`}
+            >
+              {t("login")}
+            </NextLink>
             <LocaleSwitch locale={locale} pathname={pathname} />
             <Link
               href="/cotizar"
@@ -113,6 +120,9 @@ export function Header() {
               >
                 {t("quote")}
               </Link>
+              <NextLink href="/acceso" className="link-arrow w-full justify-center border border-charcoal px-8 py-4">
+                {t("login")}
+              </NextLink>
               <LocaleSwitch locale={locale} pathname={pathname} onNavigate={() => setOpen(false)} />
             </div>
           </nav>

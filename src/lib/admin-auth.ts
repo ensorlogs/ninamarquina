@@ -13,6 +13,6 @@ export const isAdminEmail = (email?: string | null) => !!email && adminEmails().
 export async function requireAdmin() {
   const supabase = await supabaseServer();
   const { data } = await supabase.auth.getUser();
-  if (!isAdminEmail(data.user?.email)) redirect("/admin/login");
+  if (!isAdminEmail(data.user?.email)) redirect("/acceso");
   return data.user!;
 }

@@ -4,7 +4,7 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ninamarquina.com",
   email: "hello@ninamarquina.com",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "+34 687 22 75 62",
-  locations: ["El Hatillo", "Caracas", "Punta Cana"],
+  locations: ["Venezuela", "República Dominicana"],
   social: {
     instagram: "https://www.instagram.com/ninamarquina.arq",
     linkedin: "https://www.linkedin.com/in/stephanyseijas/",
