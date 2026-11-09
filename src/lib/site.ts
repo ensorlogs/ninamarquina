@@ -1,7 +1,7 @@
 export const site = {
   name: "Nina Marquina",
   tagline: "Architecture & Interiors",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://new.ninamarquina.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ninamarquina.com",
   email: "hello@ninamarquina.com",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "",
   locations: ["El Hatillo", "Caracas", "Punta Cana"],

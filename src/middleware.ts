@@ -2,6 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import createMiddleware from "next-intl/middleware";
 import { type NextRequest, NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
+import { legacyRedirect } from "./lib/legacy-redirects";
 
 const intl = createMiddleware(routing);
 
@@ -25,6 +26,8 @@ async function refreshAdminSession(request: NextRequest) {
 }
 
 export default function middleware(request: NextRequest) {
+  const legacy = legacyRedirect(request.nextUrl.pathname);
+  if (legacy) return NextResponse.redirect(new URL(legacy, request.url), 308);
   return request.nextUrl.pathname.startsWith("/admin") ? refreshAdminSession(request) : intl(request);
 }
 
