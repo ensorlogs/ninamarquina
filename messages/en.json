@@ -186,7 +186,10 @@
       "label": "Imagining something like this?",
       "title": "Tell us your idea and we'll prepare a <em>proposal</em>.",
       "button": "Get a quote"
-    }
+    },
+    "about": "About the project",
+    "scope": "Scope",
+    "highlights": "Highlights"
   },
   "journalPage": {
     "metaTitle": "Journal — Architecture, interiors & renovation | Nina Marquina",

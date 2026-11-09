@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { projects } from "@/data/projects";
+import { projectDetails } from "@/data/project-details";
 import { Arrow } from "@/components/ui/Arrow";
 import { breadcrumbJsonLd, JsonLd, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -39,10 +40,13 @@ export default async function ProjectPage({ params }: Props) {
   const t = await getTranslations("projectsPage");
   const tp = await getTranslations("projects");
 
+  const d = projectDetails[p.slug];
   const facts = [
     { label: t("year"), value: String(p.year) },
     ...(p.location ? [{ label: t("location"), value: p.location }] : []),
-    { label: t("category"), value: p.category[l] },
+    { label: t("category"), value: p.category[l].split(" · ")[0] },
+    ...(d ? [{ label: t("scope"), value: d.scope[l] }] : []),
+    ...(d?.facts ?? []).map((f) => ({ label: f.label[l], value: f.value[l] })),
   ];
 
   return (
@@ -89,6 +93,40 @@ export default async function ProjectPage({ params }: Props) {
         </div>
 
         <p className="mx-auto mt-16 max-w-3xl font-serif text-[24px] leading-[1.45] md:text-[30px]">{p.summary[l]}</p>
+
+        {d && (
+          <section className="mx-auto mt-20 max-w-5xl">
+            <p className="label mb-10 text-muted">{t("about")}</p>
+            <div className="divide-y divide-black/10 border-y border-black/10">
+              {d.sections.map((s, i) => (
+                <div key={s.title.es} className="grid gap-4 py-10 md:grid-cols-[0.8fr_1.6fr] md:gap-12">
+                  <div className="flex items-baseline gap-4">
+                    <span className="label text-clay">{String(i + 1).padStart(2, "0")}</span>
+                    <h2 className="font-serif text-[28px] leading-tight md:text-[34px]">{s.title[l]}</h2>
+                  </div>
+                  <div className="space-y-5 text-[16px] leading-[1.75] text-muted">
+                    {s.body[l].map((para) => (
+                      <p key={para}>{para}</p>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            {d.highlights && (
+              <div className="mt-14 bg-sand px-6 py-10 md:px-12 md:py-12">
+                <p className="label text-clay">{t("highlights")}</p>
+                <ul className="mt-6 grid gap-x-10 gap-y-4 md:grid-cols-2">
+                  {d.highlights.map((h) => (
+                    <li key={h.es} className="flex gap-3 text-[15.5px] leading-[1.6]">
+                      <span aria-hidden className="mt-[0.6em] h-px w-5 shrink-0 bg-clay" />
+                      {h[l]}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </section>
+        )}
 
         {p.images.length > 1 && (
           <section className="mt-20">

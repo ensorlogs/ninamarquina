@@ -186,7 +186,10 @@
       "label": "¿Te imaginas algo así?",
       "title": "Cuéntanos tu idea y te preparamos una <em>propuesta</em>.",
       "button": "Cotiza tu proyecto"
-    }
+    },
+    "about": "Sobre el proyecto",
+    "scope": "Servicio",
+    "highlights": "Lo más destacado"
   },
   "journalPage": {
     "metaTitle": "Journal — Arquitectura, interiorismo y reformas | Nina Marquina",
