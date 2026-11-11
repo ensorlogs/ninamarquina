@@ -92,7 +92,7 @@
   "newsletter": {
     "label": "Newsletter",
     "title": "Ideas on architecture, material and <em>place</em>.",
-    "body": "An occasional letter with projects, site processes and reflections from the studio. No noise.",
+    "body": "An occasional letter with projects, site processes and reflections from the studio.",
     "placeholder": "Your email address",
     "submit": "Subscribe",
     "sending": "Sending…",
