@@ -40,6 +40,11 @@ body {
     font-optical-sizing: auto;
   }
 
+  .text-white .display,
+  .text-ivory .display {
+    color: inherit;
+  }
+
   .display em {
     @apply italic;
   }
