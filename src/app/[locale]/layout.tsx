@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
+import { Newsreader, Plus_Jakarta_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -10,11 +10,11 @@ import { routing } from "@/i18n/routing";
 import { site } from "@/lib/site";
 import "../globals.css";
 
-const cormorant = Cormorant_Garamond({
+const newsreader = Newsreader({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
   style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  axes: ["opsz"],
+  variable: "--font-newsreader",
   display: "swap",
 });
 
@@ -67,7 +67,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} className={`${cormorant.variable} ${jakarta.variable}`}>
+    <html lang={locale} className={`${newsreader.variable} ${jakarta.variable}`}>
       <body>
         <NextIntlClientProvider>
           <Header />

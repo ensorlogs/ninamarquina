@@ -41,7 +41,7 @@ export function Header() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-[background-color,color,border-color] duration-500 ${
           solid
-            ? "bg-ivory/95 text-charcoal shadow-[0_1px_0_rgba(0,0,0,0.06)] backdrop-blur"
+            ? "bg-ivory/95 text-wine shadow-[0_1px_0_rgba(0,0,0,0.06)] backdrop-blur"
             : "bg-gradient-to-b from-black/55 via-black/25 to-transparent text-white [text-shadow:0_1px_10px_rgba(0,0,0,0.45)]"
         }`}
       >
@@ -55,22 +55,22 @@ export function Header() {
               <NavLink
                 key={item.key}
                 href={item.href}
-                className={`text-[10.5px] font-medium uppercase tracking-[0.2em] transition-opacity hover:opacity-60 ${solid ? "opacity-90" : "font-semibold"}`}
+                className={`text-[10.5px] font-semibold uppercase tracking-[0.2em] transition-opacity hover:opacity-60`}
               >
                 {t(item.key)}
               </NavLink>
             ))}
             <NextLink
               href="/acceso"
-              className={`text-[10.5px] font-medium uppercase tracking-[0.2em] transition-opacity hover:opacity-60 ${solid ? "opacity-90" : "font-semibold"}`}
+              className={`text-[10.5px] font-semibold uppercase tracking-[0.2em] transition-opacity hover:opacity-60`}
             >
               {t("login")}
             </NextLink>
             <LocaleSwitch locale={locale} pathname={pathname} />
             <Link
               href="/cotizar"
-              className={`border px-5 py-2.5 text-[10.5px] font-medium uppercase tracking-[0.2em] transition-colors ${
-                solid ? "border-charcoal hover:bg-charcoal hover:text-ivory" : "border-white font-semibold hover:bg-white hover:text-charcoal hover:[text-shadow:none]"
+              className={`border px-5 py-2.5 text-[10.5px] font-semibold uppercase tracking-[0.2em] transition-colors ${
+                solid ? "border-wine hover:bg-wine hover:text-ivory" : "border-white hover:bg-white hover:text-charcoal hover:[text-shadow:none]"
               }`}
             >
               {t("quote")}
@@ -84,13 +84,13 @@ export function Header() {
             aria-expanded={open}
             aria-label={open ? t("close") : t("menu")}
           >
-            <span className="label">{open ? t("close") : t("menu")}</span>
+            <span className="label font-semibold">{open ? t("close") : t("menu")}</span>
             <span className="relative block h-3 w-6">
               <span
-                className={`absolute left-0 top-0 h-px w-6 bg-current transition-transform ${open ? "translate-y-1.5 rotate-45" : ""}`}
+                className={`absolute left-0 top-0 h-[1.5px] w-6 bg-current transition-transform ${open ? "translate-y-1.5 rotate-45" : ""}`}
               />
               <span
-                className={`absolute bottom-0 left-0 h-px w-6 bg-current transition-transform ${open ? "-translate-y-1.5 -rotate-45" : ""}`}
+                className={`absolute bottom-0 left-0 h-[1.5px] w-6 bg-current transition-transform ${open ? "-translate-y-1.5 -rotate-45" : ""}`}
               />
             </span>
           </button>
@@ -98,7 +98,7 @@ export function Header() {
 
       </header>
         <div
-          className={`fixed inset-x-0 bottom-0 top-[76px] z-40 bg-ivory text-charcoal transition-opacity duration-500 xl:hidden ${
+          className={`fixed inset-x-0 bottom-0 top-[76px] z-40 bg-ivory text-wine transition-opacity duration-500 xl:hidden ${
             open ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
         >
@@ -145,7 +145,7 @@ function LocaleSwitch({
   onNavigate?: () => void;
 }) {
   return (
-    <div className="flex items-center gap-2 text-[10.5px] font-medium uppercase tracking-[0.2em]">
+    <div className="flex items-center gap-2 text-[10.5px] font-semibold uppercase tracking-[0.2em]">
       {routing.locales.map((l, i) => (
         <span key={l} className="flex items-center gap-2">
           {i > 0 && <span className="opacity-40">|</span>}

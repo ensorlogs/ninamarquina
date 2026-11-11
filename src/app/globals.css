@@ -8,8 +8,9 @@
   --color-muted: #5e5851;
   --color-clay: #8c5a3f;
   --color-espresso: #1f1914;
+  --color-wine: #8a1221;
 
-  --font-serif: var(--font-cormorant), "Times New Roman", serif;
+  --font-serif: var(--font-newsreader, var(--font-cormorant)), "Times New Roman", serif;
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -34,7 +35,9 @@ body {
   }
 
   .display {
-    @apply font-serif font-normal leading-[1.08] tracking-[-0.01em];
+    @apply font-serif font-normal leading-[1.05] tracking-[-0.03em] text-wine;
+    font-weight: 520;
+    font-optical-sizing: auto;
   }
 
   .display em {
