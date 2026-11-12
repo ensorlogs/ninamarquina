@@ -2,7 +2,8 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { projectMeta, projects } from "@/data/projects";
+import { projectMeta } from "@/data/projects";
+import { getProjects } from "@/lib/content";
 import { Arrow } from "@/components/ui/Arrow";
 import { breadcrumbJsonLd, JsonLd, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -12,12 +13,13 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "projectsPage" });
+  const projects = await getProjects();
   return pageMetadata({
     locale,
     path: "/proyectos",
     title: t("metaTitle"),
     description: t("metaDescription"),
-    image: projects[0].images[0],
+    image: projects[0]?.images[0],
   });
 }
 
@@ -26,6 +28,7 @@ export default async function ProjectsPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations("projectsPage");
   const tp = await getTranslations("projects");
+  const projects = await getProjects();
 
   return (
     <main className="bg-ivory pb-24 pt-[124px] md:pt-[150px]">

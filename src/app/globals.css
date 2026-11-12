@@ -197,3 +197,32 @@ body {
   main { padding: 0 !important; }
   body { background: #fff; }
 }
+
+.prose-nm blockquote {
+  margin: 2em 0;
+  border-left: 2px solid var(--color-clay);
+  padding-left: 1.4em;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-style: italic;
+  line-height: 1.5;
+}
+.prose-nm figcaption {
+  margin-top: -1.6em;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+.editor-nm .ProseMirror {
+  min-height: 420px;
+  outline: none;
+}
+.editor-nm .ProseMirror img.ProseMirror-selectednode {
+  outline: 2px solid var(--color-clay);
+}
+.editor-nm .ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+  color: rgb(94 88 81 / 0.5);
+}

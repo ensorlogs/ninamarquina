@@ -286,3 +286,23 @@ export function portalEmail(link: string, invite?: { name: string }) {
     }),
   };
 }
+
+export function newsletterEmail(post: { slug: string; title: string; excerpt: string; cover: string | null }) {
+  const url = `${site.url}/es/journal/${post.slug}`;
+  const cover = post.cover ? (/^https?:\/\//.test(post.cover) ? post.cover : `${site.url}${post.cover}`) : "";
+  return {
+    subject: post.title,
+    html: layout({
+      preheader: post.excerpt.slice(0, 140),
+      hero: `<tr><td style="padding:0">${
+        cover ? `<a href="${url}"><img src="${cover}" width="600" alt="" style="display:block;width:100%;height:auto;max-height:340px;object-fit:cover;border:0"></a>` : ""
+      }</td></tr>
+<tr><td style="padding:36px 40px 0">
+  <div style="font-family:${SANS};font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:${C.clay}">Journal · Nina Marquina</div>
+  <div style="font-family:${SERIF};font-size:34px;line-height:1.1;color:#8A1221;margin-top:12px">${esc(post.title)}</div>
+</td></tr>`,
+      body: `<p style="margin:0 0 28px">${esc(post.excerpt)}</p>${button(url, "Leer el artículo")}`,
+      footerNote: `Recibes este email porque te suscribiste a las novedades de Nina Marquina. <a href="{{ unsubscribe }}" style="color:#8f857a">Darse de baja</a>.`,
+    }),
+  };
+}

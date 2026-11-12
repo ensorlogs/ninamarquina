@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { formatDate, posts } from "@/data/posts";
+import { formatDate, type Post } from "@/data/posts";
+import { getPosts } from "@/lib/content";
 import { PostCard } from "@/components/home/Journal";
 import { Arrow } from "@/components/ui/Arrow";
 import { breadcrumbJsonLd, JsonLd, pageMetadata } from "@/lib/seo";
@@ -12,6 +13,7 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "journalPage" });
+  const posts = await getPosts();
   return pageMetadata({
     locale,
     path: "/journal",
@@ -25,8 +27,9 @@ export default async function JournalPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("journalPage");
+  const posts = await getPosts();
   const [first, ...rest] = posts;
-  const meta = (p: (typeof posts)[number]) => `${formatDate(p.date, locale)} · ${t("minutes", { n: p.minutes })}`;
+  const meta = (p: Post) => `${formatDate(p.date, locale)} · ${t("minutes", { n: p.minutes })}`;
 
   return (
     <main className="bg-ivory pb-24 pt-[124px] md:pt-[150px]">

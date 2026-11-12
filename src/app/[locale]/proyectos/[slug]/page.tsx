@@ -3,21 +3,20 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { projects } from "@/data/projects";
-import { projectDetails } from "@/data/project-details";
+import { absoluteUrl, getProjects } from "@/lib/content";
 import { Arrow } from "@/components/ui/Arrow";
 import { breadcrumbJsonLd, JsonLd, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
-export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  return (await getProjects()).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
-  const p = projects.find((x) => x.slug === slug);
+  const p = (await getProjects()).find((x) => x.slug === slug);
   if (!p) return {};
   const l = locale as Locale;
   return pageMetadata({
@@ -32,6 +31,7 @@ export async function generateMetadata({ params }: Props) {
 export default async function ProjectPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
+  const projects = await getProjects();
   const index = projects.findIndex((x) => x.slug === slug);
   if (index < 0) notFound();
   const p = projects[index];
@@ -40,7 +40,7 @@ export default async function ProjectPage({ params }: Props) {
   const t = await getTranslations("projectsPage");
   const tp = await getTranslations("projects");
 
-  const d = projectDetails[p.slug];
+  const d = p.details;
   const facts = [
     { label: t("year"), value: String(p.year) },
     ...(p.location ? [{ label: t("location"), value: p.location }] : []),
@@ -57,7 +57,7 @@ export default async function ProjectPage({ params }: Props) {
           "@type": "CreativeWork",
           name: p.title,
           description: p.summary[l],
-          image: p.images.map((src) => `${site.url}${src}`),
+          image: p.images.map((src) => absoluteUrl(site.url, src)),
           dateCreated: String(p.year),
           genre: p.category[l],
           ...(p.location ? { locationCreated: { "@type": "Place", name: p.location } } : {}),

@@ -10,6 +10,8 @@ const items = [
   ["/admin/clientes", "Clientes"],
   ["/admin/proyectos", "Proyectos"],
   ["/admin/presupuestos", "Presupuestos"],
+  ["/admin/portfolio", "Portfolio"],
+  ["/admin/journal", "Journal"],
 ] as const;
 
 export function AdminNav({ email }: { email: string }) {

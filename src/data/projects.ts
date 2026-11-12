@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import type { ProjectDetails } from "./project-details";
 
 type Localized = Record<Locale, string>;
 
@@ -11,6 +12,7 @@ export type Project = {
   summary: Localized;
   images: string[];
   featured?: boolean;
+  details?: ProjectDetails;
 };
 
 const gallery = (slug: string, count: number) =>
@@ -105,8 +107,6 @@ export const projects: Project[] = [
     images: gallery("showroom-zavotti", 3),
   },
 ];
-
-export const featuredProjects = projects.filter((p) => p.featured);
 
 export function projectMeta(p: Project, locale: Locale) {
   return [p.location, p.category[locale], p.year].filter(Boolean).join(" · ");

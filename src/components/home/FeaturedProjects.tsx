@@ -1,14 +1,15 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { projects, projectMeta } from "@/data/projects";
+import { projectMeta } from "@/data/projects";
+import { getProjects } from "@/lib/content";
 import { Arrow } from "../ui/Arrow";
 import { ProjectsCarousel } from "./ProjectsCarousel";
 
 export async function FeaturedProjects() {
   const t = await getTranslations("projects");
   const locale = (await getLocale()) as Locale;
-  const items = projects.map((p) => ({
+  const items = (await getProjects()).map((p) => ({
     slug: p.slug,
     title: p.title,
     meta: projectMeta(p, locale),

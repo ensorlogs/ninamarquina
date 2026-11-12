@@ -2,7 +2,8 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { formatDate, posts } from "@/data/posts";
+import { formatDate } from "@/data/posts";
+import { absoluteUrl, getPost, getPosts } from "@/lib/content";
 import { PostCard } from "@/components/home/Journal";
 import { Arrow } from "@/components/ui/Arrow";
 import { breadcrumbJsonLd, JsonLd, pageMetadata } from "@/lib/seo";
@@ -10,19 +11,19 @@ import { site } from "@/lib/site";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
-export function generateStaticParams() {
-  return posts.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  return (await getPosts()).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
-  const p = posts.find((x) => x.slug === slug);
+  const p = await getPost(slug);
   if (!p) return {};
   return pageMetadata({
     locale,
     path: `/journal/${p.slug}`,
-    title: `${p.title} | Nina Marquina`,
-    description: p.excerpt.slice(0, 158),
+    title: p.seoTitle || `${p.title} | Nina Marquina`,
+    description: (p.seoDescription || p.excerpt).slice(0, 158),
     image: p.cover ?? undefined,
     type: "article",
     locales: ["es"],
@@ -32,10 +33,10 @@ export async function generateMetadata({ params }: Props) {
 export default async function PostPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const post = posts.find((x) => x.slug === slug);
+  const post = await getPost(slug);
   if (!post) notFound();
   const t = await getTranslations("journalPage");
-  const more = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const more = (await getPosts()).filter((p) => p.slug !== post.slug).slice(0, 3);
   const url = `${site.url}/es/journal/${post.slug}`;
 
   return (
@@ -48,7 +49,7 @@ export default async function PostPage({ params }: Props) {
           description: post.excerpt,
           datePublished: post.date,
           inLanguage: "es",
-          image: post.cover ? `${site.url}${post.cover}` : undefined,
+          image: post.cover ? absoluteUrl(site.url, post.cover) : undefined,
           author: { "@type": "Person", name: "Nina Marquina", url: site.social.linkedin },
           publisher: { "@type": "Organization", name: "Nina Marquina", url: site.url },
           mainEntityOfPage: url,

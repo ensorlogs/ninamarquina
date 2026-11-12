@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { formatDate, posts } from "@/data/posts";
+import { formatDate, type Post } from "@/data/posts";
+import { getPosts } from "@/lib/content";
 import { Arrow } from "../ui/Arrow";
 import { ProjectsCarousel } from "./ProjectsCarousel";
 import { Stories, type Story } from "./Stories";
@@ -11,6 +12,7 @@ export async function Journal() {
   const tp = await getTranslations("journalPage");
   const locale = await getLocale();
   const stories = t.raw("stories") as Story[];
+  const posts = await getPosts();
 
   return (
     <section id="journal" className="scroll-mt-20 overflow-hidden bg-ivory py-20 md:py-28">
@@ -50,7 +52,7 @@ export async function Journal() {
   );
 }
 
-export function PostCard({ post, meta }: { post: (typeof posts)[number]; meta: string }) {
+export function PostCard({ post, meta }: { post: Post; meta: string }) {
   return (
     <Link href={`/journal/${post.slug}`} className="group block">
       <div className="relative aspect-[4/3] overflow-hidden bg-stone">

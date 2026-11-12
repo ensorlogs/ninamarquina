@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-import { projects } from "@/data/projects";
-import { posts } from "@/data/posts";
+import { getPosts, getProjects } from "@/lib/content";
 import { routing } from "@/i18n/routing";
 import { site } from "@/lib/site";
 
@@ -14,7 +13,8 @@ function entry(path: string, priority: number, lastModified?: string, locales: r
   }));
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [posts, projects] = await Promise.all([getPosts(), getProjects()]);
   return [
     ...entry("", 1),
     ...entry("/proyectos", 0.9),
