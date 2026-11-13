@@ -13,7 +13,7 @@ export async function findPortalClient(email?: string | null): Promise<PortalCli
   const { data } = await db
     .from("clients")
     .select("id,name,email")
-    .ilike("email", email.trim())
+    .ilike("email", email.trim().replace(/[\\%_]/g, "\\$&"))
     .eq("portal_enabled", true)
     .limit(1)
     .maybeSingle();
