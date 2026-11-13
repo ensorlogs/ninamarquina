@@ -41,7 +41,7 @@ export async function InstagramFeed() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("post")}
-              className="group relative aspect-square overflow-hidden bg-stone"
+              className="group relative aspect-[4/5] overflow-hidden bg-stone"
             >
               <Image
                 src={p.image}
