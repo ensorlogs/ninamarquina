@@ -70,6 +70,7 @@ export async function convertRequest(id: string) {
     projectId = p!.id;
   }
   await supabase.from("quote_requests").update({ client_id: clientId, project_id: projectId, status: "won" }).eq("id", id);
+  await supabase.from("budgets").update({ client_id: clientId, project_id: projectId }).eq("request_id", id).is("client_id", null);
   revalidatePath(`/admin/solicitudes/${id}`);
   redirect(`/admin/proyectos/${projectId}`);
 }
@@ -229,8 +230,8 @@ export async function addPhase(projectId: string, form: FormData) {
   const supabase = await db();
   const name = str(form, "name", 120);
   if (!name) return;
-  const { count } = await supabase.from("project_phases").select("id", { count: "exact", head: true }).eq("project_id", projectId);
-  await supabase.from("project_phases").insert({ project_id: projectId, name, position: count ?? 0 });
+  const { data: last } = await supabase.from("project_phases").select("position").eq("project_id", projectId).order("position", { ascending: false }).limit(1).maybeSingle();
+  await supabase.from("project_phases").insert({ project_id: projectId, name, position: last ? last.position + 1 : 0 });
   project(projectId);
 }
 
