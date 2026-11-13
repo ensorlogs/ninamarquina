@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
+  if (!rateLimit(`newsletter:${clientIp(request)}`, 5)) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  }
   const { email, locale } = (await request.json().catch(() => ({}))) as { email?: string; locale?: string };
 
   if (!email || !EMAIL_RE.test(email)) {

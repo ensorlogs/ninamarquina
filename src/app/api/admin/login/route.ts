@@ -3,8 +3,13 @@ import { isAdminEmail } from "@/lib/admin-auth";
 import { loginEmail } from "@/lib/emails";
 import { magicLink, sendBrevo } from "@/lib/magic-link";
 import { findPortalClient } from "@/lib/portal-auth";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
+  if (!rateLimit(`login:${clientIp(request)}`, 5)) {
+    // Same silent ok — never reveal rate limiting to the caller
+    return NextResponse.json({ ok: true });
+  }
   const { email } = (await request.json().catch(() => ({}))) as { email?: string };
   const normalized = (email ?? "").trim().toLowerCase();
   const admin = isAdminEmail(normalized);

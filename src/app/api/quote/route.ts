@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
 import { formatLocation, type QuoteInput, validateQuote } from "@/lib/quote";
 import { site } from "@/lib/site";
 import { clientQuoteEmail, internalQuoteEmail, type QuoteRow } from "@/lib/emails";
@@ -9,6 +10,9 @@ const clip = (v: unknown, n: number) => (typeof v === "string" ? v.trim().slice(
 export async function POST(request: Request) {
   const q = (await request.json().catch(() => ({}))) as Partial<QuoteInput>;
   if (q.company) return NextResponse.json({ ok: true });
+  if (!rateLimit(`quote:${clientIp(request)}`, 4)) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  }
 
   const invalid = validateQuote(q);
   if (invalid) return NextResponse.json({ error: "invalid", field: invalid }, { status: 400 });

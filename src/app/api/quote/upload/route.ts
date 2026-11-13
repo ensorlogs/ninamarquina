@@ -1,11 +1,15 @@
 import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
 import { FILE_TYPES, MAX_FILE_BYTES, MAX_FILES } from "@/lib/quote";
 import { QUOTE_BUCKET, supabaseAdmin } from "@/lib/supabase-admin";
 
 type FileMeta = { name: string; type: string; size: number };
 
 export async function POST(request: Request) {
+  if (!rateLimit(`quote-upload:${clientIp(request)}`, 10)) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  }
   const { files } = (await request.json().catch(() => ({}))) as { files?: FileMeta[] };
   if (!Array.isArray(files) || files.length === 0 || files.length > MAX_FILES) {
     return NextResponse.json({ error: "invalid_files" }, { status: 400 });

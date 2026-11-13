@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/data/posts";
+import { sanitizeHtml } from "@/lib/sanitize";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
 export default async function PreviewPost({ params }: { params: Promise<{ id: string }> }) {
@@ -17,7 +18,7 @@ export default async function PreviewPost({ params }: { params: Promise<{ id: st
       <h1 className="display mt-5 text-[40px] md:text-[58px]">{p.title}</h1>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       {p.cover && <img src={p.cover} alt="" className="mt-10 aspect-[16/9] w-full object-cover" />}
-      <div className="prose-nm mt-12" dangerouslySetInnerHTML={{ __html: p.html }} />
+      <div className="prose-nm mt-12" dangerouslySetInnerHTML={{ __html: sanitizeHtml(p.html) }} />
     </article>
   );
 }

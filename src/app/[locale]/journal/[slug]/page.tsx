@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { formatDate } from "@/data/posts";
 import { absoluteUrl, getPost, getPosts } from "@/lib/content";
+import { sanitizeHtml } from "@/lib/sanitize";
 import { PostCard } from "@/components/home/Journal";
 import { Arrow } from "@/components/ui/Arrow";
 import { breadcrumbJsonLd, JsonLd, pageMetadata } from "@/lib/seo";
@@ -78,7 +79,7 @@ export default async function PostPage({ params }: Props) {
             <Image src={post.cover} alt={post.title} fill priority sizes="(min-width: 1024px) 1024px, 100vw" className="object-cover" />
           </div>
         )}
-        <div className="prose-nm mx-auto mt-14 max-w-3xl" dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div className="prose-nm mx-auto mt-14 max-w-3xl" dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.html) }} />
       </article>
 
       <section className="container-site mt-24 border-t border-black/10 pt-14">
