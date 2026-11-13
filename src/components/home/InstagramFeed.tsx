@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import posts from "@/data/instagram.json";
+import { getInstagramPosts } from "@/lib/instagram";
 import { site } from "@/lib/site";
 import { Arrow } from "../ui/Arrow";
 
@@ -14,6 +14,7 @@ const IgIcon = ({ className = "" }: { className?: string }) => (
 
 export async function InstagramFeed() {
   const t = await getTranslations("instagram");
+  const posts = await getInstagramPosts();
   return (
     <section className="bg-ivory py-20 md:py-24">
       <div className="container-site">
