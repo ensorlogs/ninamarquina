@@ -1,6 +1,7 @@
-import { PROJECT_STATUS } from "@/lib/admin-labels";
+import { BUDGET_STATUS, PROJECT_STATUS, fmtDate } from "@/lib/admin-labels";
+import { budgetUrl } from "@/lib/budget";
 import { requirePortal } from "@/lib/portal-auth";
-import { overallProgress } from "@/lib/portal-data";
+import { budgetTotal, clientBudgets, money, overallProgress } from "@/lib/portal-data";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
 type Row = { id: string; title: string; location: string | null; status: string; project_phases: { progress: number; status: string; name: string; position: number }[] };
@@ -14,6 +15,7 @@ export default async function PortalHome() {
     .neq("status", "cancelled")
     .order("created_at", { ascending: false });
   const projects = (data ?? []) as Row[];
+  const budgets = (await clientBudgets(client.id)).filter((b) => !b.project_id);
   return (
     <>
       <p className="label text-muted">Área de clientes</p>
@@ -46,6 +48,25 @@ export default async function PortalHome() {
         })}
         {!projects.length && <p className="text-[14px] text-muted">Todavía no hay proyectos en tu área. Te avisaremos cuando esté listo.</p>}
       </div>
+      {budgets.length > 0 && (
+        <section className="mt-12 bg-sand p-7 md:p-9">
+          <h2 className="label text-muted">Presupuestos</h2>
+          <div className="mt-4 divide-y divide-black/10">
+            {budgets.map((b) => (
+              <a key={b.id} href={budgetUrl(b.share_token)} target="_blank" rel="noopener noreferrer" className="block py-4 hover:text-clay">
+                <p className="flex justify-between gap-3 text-[12px] text-muted">
+                  <span>#{b.number} · {fmtDate(b.created_at)}</span>
+                  <span>{BUDGET_STATUS[b.status]}</span>
+                </p>
+                <p className="mt-1 font-serif text-[20px] leading-tight">{b.title}</p>
+                <p className="mt-1 text-[14px]">
+                  {money(budgetTotal(b), b.currency)} <span className="text-clay">· Ver / PDF →</span>
+                </p>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
     </>
   );
 }
