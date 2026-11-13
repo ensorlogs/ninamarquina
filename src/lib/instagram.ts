@@ -14,7 +14,7 @@ type BeholdPost = {
 
 type BeholdFeed = { posts?: BeholdPost[] };
 
-const LIMIT = 8;
+const LIMIT = 6;
 
 // Prefer Behold's own CDN (behold.pictures): permanent URLs, unlike Instagram's
 // scontent URLs which carry short-lived signatures.
