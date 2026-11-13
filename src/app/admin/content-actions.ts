@@ -23,7 +23,7 @@ export async function slugify(text: string) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
-    .slice(0, 90);
+    .slice(0, 160);
 }
 
 function refreshSite() {
@@ -205,10 +205,10 @@ export async function saveProject(id: string, input: ProjectInput): Promise<{ ok
         title: lc(s.title, 200),
         body: { es: s.body.es.map((p) => clean(p, 4000)).filter(Boolean), en: s.body.en.map((p) => clean(p, 4000)).filter(Boolean) },
       }))
-      .filter((s) => s.title.es || s.body.es.length),
+      .filter((s) => s.title.es || s.title.en || s.body.es.length || s.body.en.length),
     highlights: d.highlights.map((h) => lc(h, 400)).filter((h) => h.es || h.en),
   };
-  const hasDetails = details.scope.es || details.facts.length || details.sections.length || details.highlights.length;
+  const hasDetails = details.scope.es || details.scope.en || details.facts.length || details.sections.length || details.highlights.length;
   const { error } = await supabase
     .from("portfolio_projects")
     .update({
