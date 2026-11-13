@@ -15,12 +15,16 @@ export function LoginForm() {
       onSubmit={async (e) => {
         e.preventDefault();
         setState("sending");
-        const res = await fetch("/api/admin/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        });
-        setState(res.ok ? "sent" : "error");
+        try {
+          const res = await fetch("/api/admin/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+          });
+          setState(res.ok ? "sent" : "error");
+        } catch {
+          setState("error");
+        }
       }}
     >
       <label className="label text-muted" htmlFor="email">Email</label>
