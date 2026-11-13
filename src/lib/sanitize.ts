@@ -11,5 +11,16 @@ export function sanitizeHtml(html: string): string {
     .replace(/<\s*(script|iframe|object|embed|form|link|meta|base|svg|math)\b[\s\S]*?<\s*\/\s*\1\s*>/gi, "")
     .replace(/<\s*(script|iframe|object|embed|form|link|meta|base|svg|math)\b[^>]*\/?\s*>/gi, "")
     .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "")
-    .replace(/(href|src)\s*=\s*(["']?)\s*(javascript|data|vbscript)\s*:[^\s>"']*\2/gi, '$1="#"');
+    .replace(/\s(href|src)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, (m, attr: string, raw: string) =>
+      /^(javascript|data|vbscript):/i.test(decodeEntities(raw.replace(/^["']|["']$/g, "")).replace(/[\s\u0000-\u001f]+/g, ""))
+        ? ` ${attr}="#"`
+        : m,
+    );
+}
+
+function decodeEntities(s: string): string {
+  return s
+    .replace(/&#x([0-9a-f]+);?/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+    .replace(/&#(\d+);?/g, (_, d) => String.fromCodePoint(Number(d)))
+    .replace(/&(colon|tab|newline);/gi, (_, n: string) => ({ colon: ":", tab: "\t", newline: "\n" })[n.toLowerCase()] ?? "");
 }
