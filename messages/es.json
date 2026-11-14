@@ -385,8 +385,7 @@
   },
   "chat": {
     "open": "Pregúntanos",
-    "subtitle": "Asistente virtual · responde al momento",
-    "welcome": "Hola, soy la asistente de Nina Marquina. Cuéntame qué tienes en mente — una reforma, un proyecto, ideas — y te oriento.",
+    "welcome": "Hola, soy Nina Marquina. Cuéntame qué tienes en mente — una reforma, un proyecto, ideas — y te oriento personalmente.",
     "placeholder": "Escribe tu mensaje…",
     "send": "Enviar",
     "typing": "Escribiendo…",
@@ -394,6 +393,7 @@
     "close": "Cerrar",
     "s1": "Quiero hacer una reforma",
     "s2": "¿Dónde trabajan?",
-    "s3": "Quiero un presupuesto"
+    "s3": "Quiero un presupuesto",
+    "online": "En línea"
   }
 }

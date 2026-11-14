@@ -60,11 +60,21 @@ export function ChatWidget() {
   return (
     <>
       {open && (
-        <div className="fixed bottom-24 right-5 z-50 flex h-[min(560px,72dvh)] w-[min(380px,calc(100vw-40px))] flex-col overflow-hidden bg-ivory shadow-[0_20px_60px_rgba(0,0,0,0.25)] md:right-8 print:hidden">
+        <div className="fixed bottom-24 right-5 z-50 flex h-[min(560px,72dvh)] w-[min(380px,calc(100vw-40px))] flex-col overflow-hidden bg-ivory shadow-[0_20px_60px_rgba(0,0,0,0.25)] md:bottom-[104px] md:right-8 print:hidden">
           <div className="flex items-center justify-between bg-espresso px-5 py-4 text-ivory">
-            <div>
-              <p className="font-serif text-[16px] tracking-[0.14em]">NINA MARQUINA</p>
-              <p className="text-[10px] uppercase tracking-[0.18em] text-ivory/60">{t("subtitle")}</p>
+            <div className="flex items-center gap-3">
+              <img
+                src="/images/stephany.jpg"
+                alt="Nina Marquina"
+                className="h-11 w-11 rounded-full border border-ivory/25 object-cover object-[center_22%]"
+              />
+              <div>
+                <p className="font-serif text-[16px] tracking-[0.14em]">NINA MARQUINA</p>
+                <p className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] text-ivory/60">
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  {t("online")}
+                </p>
+              </div>
             </div>
             <button onClick={() => setOpen(false)} aria-label={t("close")} className="px-2 text-[18px] leading-none text-ivory/70 hover:text-ivory">
               ×
@@ -129,7 +139,7 @@ export function ChatWidget() {
       <button
         onClick={open ? () => setOpen(false) : openChat}
         aria-label={t("open")}
-        className="group fixed bottom-[92px] right-5 z-40 flex h-13 w-13 items-center justify-center rounded-full bg-clay text-ivory shadow-[0_8px_30px_rgba(0,0,0,0.18)] transition-all hover:bg-charcoal md:bottom-[104px] md:right-8 print:hidden"
+        className="group fixed bottom-5 right-5 z-40 flex h-13 w-13 items-center justify-center rounded-full bg-clay text-ivory shadow-[0_8px_30px_rgba(0,0,0,0.18)] transition-all hover:bg-charcoal md:bottom-8 md:right-8 print:hidden"
       >
         <ChatIcon />
         <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-full bg-charcoal px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-ivory opacity-0 transition-opacity group-hover:opacity-100">

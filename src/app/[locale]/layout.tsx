@@ -6,7 +6,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Header } from "@/components/Header";
 import { ChatWidget } from "@/components/chat/ChatWidget";
 import { FooterCTA } from "@/components/home/FooterCTA";
-import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { routing } from "@/i18n/routing";
 import { site } from "@/lib/site";
 import "../globals.css";
@@ -74,7 +73,6 @@ export default async function LocaleLayout({ children, params }: Props) {
           <Header />
           {children}
           <FooterCTA />
-          <WhatsAppButton />
           <ChatWidget />
         </NextIntlClientProvider>
       </body>

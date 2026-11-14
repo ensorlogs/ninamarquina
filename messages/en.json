@@ -385,8 +385,7 @@
   },
   "chat": {
     "open": "Ask us",
-    "subtitle": "Virtual assistant · replies instantly",
-    "welcome": "Hi, I'm Nina Marquina's assistant. Tell me what's on your mind — a renovation, a project, ideas — and I'll guide you.",
+    "welcome": "Hi, I'm Nina Marquina. Tell me what's on your mind — a renovation, a project, ideas — and I'll personally guide you.",
     "placeholder": "Type your message…",
     "send": "Send",
     "typing": "Typing…",
@@ -394,6 +393,7 @@
     "close": "Close",
     "s1": "I want to renovate",
     "s2": "Where do you work?",
-    "s3": "I want a quote"
+    "s3": "I want a quote",
+    "online": "Online"
   }
 }
