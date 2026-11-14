@@ -9,6 +9,9 @@ import { supabaseAdmin } from "@/lib/supabase-admin";
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
 export async function POST(request: Request) {
+  if (!rateLimit(`chat:${clientIp(request)}`, 12)) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  }
   const body = (await request.json().catch(() => ({}))) as {
     messages?: ChatMessage[];
     company?: string;
@@ -16,39 +19,47 @@ export async function POST(request: Request) {
     locale?: string;
   };
   if (body.company) return NextResponse.json({ reply: "" });
-  if (!rateLimit(`chat:${clientIp(request)}`, 12)) {
-    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
-  }
   if (typeof body.startedAt !== "number" || Date.now() - body.startedAt < 3_000) {
     return NextResponse.json({ error: "too_fast" }, { status: 400 });
   }
 
-  const messages = (body.messages ?? [])
-    .filter((m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
-    .slice(-14);
+  const messages = (Array.isArray(body.messages) ? body.messages.slice(-14) : [])
+    .filter((m) => (m?.role === "user" || m?.role === "assistant") && typeof m.content === "string")
+    .map((m) => ({ role: m.role, content: m.content.slice(0, 4000) }));
   if (!messages.length || messages.at(-1)!.role !== "user") {
     return NextResponse.json({ error: "invalid" }, { status: 400 });
   }
 
-  const reply = await geminiReply(messages);
+  const [reply] = await Promise.all([geminiReply(messages), captureLead(messages).catch((e) => console.error("[chat] lead", e))]);
   if (!reply) return NextResponse.json({ error: "provider_error" }, { status: 502 });
-
-  await captureLead(messages).catch((e) => console.error("[chat] lead", e));
   return NextResponse.json({ reply });
 }
 
-/** When the visitor shares an email or phone, store it once and notify Nina. */
+/** When the visitor shares an email or phone, store it once and notify Nina (again only if new contact info appears). */
 async function captureLead(messages: ChatMessage[]) {
-  const { email, phone } = extractLead(messages);
-  if (!email && !phone) return;
+  const found = extractLead(messages);
+  if (!found.email && !found.phone) return;
   const db = supabaseAdmin();
   if (!db) return;
-  if (email) {
-    const { data: existing } = await db.from("chat_leads").select("id").ilike("email", email).limit(1).maybeSingle();
-    if (existing) return;
-  }
+  type Lead = { id: string; email: string | null; phone: string | null };
+  const byEmail = found.email
+    ? (await db.from("chat_leads").select("id,email,phone").ilike("email", found.email.replace(/[\\%_]/g, "\\$&")).limit(1).maybeSingle()).data
+    : null;
+  const existing: Lead | null =
+    byEmail ?? (found.phone ? (await db.from("chat_leads").select("id,email,phone").eq("phone", found.phone).limit(1).maybeSingle()).data : null);
   const transcript = messages.map((m) => ({ role: m.role, content: m.content.slice(0, 1000) }));
-  await db.from("chat_leads").insert({ email, phone, transcript });
+  if (existing) {
+    const patch = {
+      ...(!existing.email && found.email ? { email: found.email } : {}),
+      ...(!existing.phone && found.phone ? { phone: found.phone } : {}),
+    };
+    if (!Object.keys(patch).length) return;
+    await db.from("chat_leads").update({ ...patch, transcript }).eq("id", existing.id);
+  } else {
+    await db.from("chat_leads").insert({ email: found.email, phone: found.phone, transcript });
+  }
+  const email = existing?.email ?? found.email;
+  const phone = existing?.phone ?? found.phone;
 
   if (email) {
     const apiKey = process.env.BREVO_API_KEY;
