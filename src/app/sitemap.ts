@@ -21,6 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...entry("/estudio", 0.8),
     ...entry("/journal", 0.7),
     ...entry("/cotizar", 0.9),
+    ...entry("/legal", 0.3),
     ...projects.flatMap((p) => entry(`/proyectos/${p.slug}`, 0.8)),
     ...posts.flatMap((p) => entry(`/journal/${p.slug}`, 0.6, p.date, ["es"])),
   ];

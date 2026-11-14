@@ -57,7 +57,14 @@ export async function FooterCTA() {
             <Logo light />
             <SocialIcons />
           </div>
-          <p className="mt-6 text-[11px] text-ivory/45">
+          <nav className="mt-6 flex flex-wrap gap-x-5 gap-y-1.5 text-[11px]">
+            {(["aviso", "privacidad", "cookies", "accesibilidad"] as const).map((id) => (
+              <Link key={id} href={`/legal#${id}`} className="text-ivory/45 underline-offset-2 transition-colors hover:text-ivory hover:underline">
+                {t(`legal.nav.${id}`)}
+              </Link>
+            ))}
+          </nav>
+          <p className="mt-3 text-[11px] text-ivory/45">
             © {new Date().getFullYear()} Nina Marquina. {t("footer.rights")}
           </p>
           <p className="mt-1.5 flex items-center gap-1.5 text-[11px] text-ivory/45">

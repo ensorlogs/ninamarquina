@@ -395,5 +395,55 @@
     "s2": "Where do you work?",
     "s3": "I want a quote",
     "online": "Online"
+  },
+  "legal": {
+    "title": "Legal information",
+    "updated": "Last updated: November 2026",
+    "nav": {
+      "aviso": "Legal notice",
+      "privacidad": "Privacy",
+      "cookies": "Cookies",
+      "accesibilidad": "Accessibility"
+    },
+    "sections": [
+      {
+        "id": "aviso",
+        "title": "Legal notice",
+        "body": [
+          "This website, ninamarquina.com, is owned by Nina Marquina, an architecture and interior design studio. You can reach us at hello@ninamarquina.com.",
+          "The purpose of this site is to present the studio's services —architecture, renovations, construction, interior design and 3D visualization—, showcase the project portfolio and make it easy for potential clients to get in touch through the quote form, the chat and contact forms.",
+          "All site content (texts, photographs, renders, plans, logos and design) belongs to Nina Marquina or is used with authorization, and may not be reproduced, distributed or used commercially without express consent.",
+          "The site may contain links to third-party pages (Instagram, WhatsApp, LinkedIn). We are not responsible for their content or their privacy policies."
+        ]
+      },
+      {
+        "id": "privacidad",
+        "title": "Privacy",
+        "body": [
+          "We collect the data you voluntarily provide: name, email, phone number, project description and attached files in the quote form; your email if you subscribe to the newsletter; and the messages and contact details you share in the website chat.",
+          "We use this data solely to respond to your request, prepare quotes, manage projects and —if you authorize it— send you communications about the studio. We never sell or share your data with third parties for commercial purposes.",
+          "To provide the service we use providers that may process data on our behalf: Supabase (database), Brevo (email delivery), Google Gemini (the chat processes your messages to generate replies) and Vercel (web hosting). They all operate under their own privacy policies.",
+          "We keep the data for as long as needed to handle your request and any resulting business relationship. You may exercise your rights of access, rectification, deletion, objection and portability by writing to hello@ninamarquina.com."
+        ]
+      },
+      {
+        "id": "cookies",
+        "title": "Cookies",
+        "body": [
+          "This website does not use tracking, advertising or third-party analytics cookies.",
+          "Only essential technical storage is used for the site to function, such as the admin panel session and language preferences.",
+          "If you access third-party services from this site (such as Instagram or WhatsApp), those platforms may set their own cookies according to their policies, over which we have no control. You can configure your browser to block or delete cookies at any time."
+        ]
+      },
+      {
+        "id": "accesibilidad",
+        "title": "Accessibility",
+        "body": [
+          "We are committed to making this website usable by as many people as possible, reasonably following the WCAG 2.1 guidelines at level AA.",
+          "The site is designed with sufficient color contrast, legible typography, keyboard navigation, alternative text on relevant images and a semantic structure compatible with screen readers.",
+          "If you encounter any accessibility barrier or have suggestions for improvement, write to us at hello@ninamarquina.com and we will review it as soon as possible."
+        ]
+      }
+    ]
   }
 }

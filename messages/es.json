@@ -395,5 +395,55 @@
     "s2": "¿Dónde trabajan?",
     "s3": "Quiero un presupuesto",
     "online": "En línea"
+  },
+  "legal": {
+    "title": "Información legal",
+    "updated": "Última actualización: noviembre de 2026",
+    "nav": {
+      "aviso": "Aviso legal",
+      "privacidad": "Privacidad",
+      "cookies": "Cookies",
+      "accesibilidad": "Accesibilidad"
+    },
+    "sections": [
+      {
+        "id": "aviso",
+        "title": "Aviso legal",
+        "body": [
+          "Este sitio web, ninamarquina.com, es titularidad de Nina Marquina, estudio de arquitectura e interiorismo. Puedes contactar en hello@ninamarquina.com.",
+          "El objeto de esta web es dar a conocer los servicios del estudio —arquitectura, reformas, construcción, interiorismo y visualización 3D—, mostrar el portfolio de proyectos y facilitar el contacto con potenciales clientes a través del cotizador, el chat y los formularios.",
+          "Todos los contenidos del sitio (textos, fotografías, renders, planos, logotipos y diseño) son propiedad de Nina Marquina o se usan con autorización, y no pueden reproducirse, distribuirse ni utilizarse con fines comerciales sin consentimiento expreso.",
+          "El sitio puede contener enlaces a páginas de terceros (Instagram, WhatsApp, LinkedIn). No nos hacemos responsables de sus contenidos ni de sus políticas de privacidad."
+        ]
+      },
+      {
+        "id": "privacidad",
+        "title": "Privacidad",
+        "body": [
+          "Recogemos los datos que tú nos facilitas voluntariamente: nombre, email, teléfono, descripción del proyecto y archivos adjuntos en el formulario de cotización; tu email si te suscribes al newsletter; y los mensajes y datos de contacto que compartas en el chat de la web.",
+          "Usamos estos datos únicamente para responder a tu solicitud, elaborar presupuestos, gestionar proyectos y —si lo autorizas— enviarte comunicaciones sobre el estudio. Nunca vendemos ni cedemos tus datos a terceros con fines comerciales.",
+          "Para prestar el servicio utilizamos proveedores que pueden tratar datos en nuestro nombre: Supabase (base de datos), Brevo (envío de emails), Google Gemini (el chat procesa tus mensajes para generar respuestas) y Vercel (alojamiento web). Todos operan bajo sus propias políticas de privacidad.",
+          "Conservamos los datos el tiempo necesario para gestionar tu solicitud y la relación comercial resultante. Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición y portabilidad escribiendo a hello@ninamarquina.com."
+        ]
+      },
+      {
+        "id": "cookies",
+        "title": "Cookies",
+        "body": [
+          "Esta web no utiliza cookies de seguimiento, publicidad ni analítica de terceros.",
+          "Solo se emplea almacenamiento técnico imprescindible para el funcionamiento del sitio, como la sesión del panel de administración y las preferencias de idioma.",
+          "Si accedes a servicios de terceros desde esta web (por ejemplo Instagram o WhatsApp), esas plataformas pueden instalar sus propias cookies conforme a sus políticas, sobre las que no tenemos control. Puedes configurar tu navegador para bloquear o eliminar cookies en cualquier momento."
+        ]
+      },
+      {
+        "id": "accesibilidad",
+        "title": "Accesibilidad",
+        "body": [
+          "Nos comprometemos a que esta web sea usable por el mayor número de personas posible, siguiendo los criterios de las pautas WCAG 2.1 en nivel AA en la medida de lo razonable.",
+          "El sitio está diseñado con contraste de color suficiente, tipografías legibles, navegación por teclado, textos alternativos en las imágenes relevantes y estructura semántica compatible con lectores de pantalla.",
+          "Si encuentras alguna barrera de acceso o tienes sugerencias de mejora, escríbenos a hello@ninamarquina.com y lo revisaremos lo antes posible."
+        ]
+      }
+    ]
   }
 }
