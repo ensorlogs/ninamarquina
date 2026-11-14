@@ -111,7 +111,8 @@
   },
   "footer": {
     "rights": "Todos los derechos reservados.",
-    "madeBy": "Hecho con amor por"
+    "madeBy": "Hecho con",
+    "by": "por"
   },
   "whatsapp": {
     "label": "Escríbenos por WhatsApp"
