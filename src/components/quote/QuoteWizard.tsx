@@ -47,7 +47,6 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
   const [showError, setShowError] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
-  const startedAt = useRef(Date.now());
   const [challenge, setChallenge] = useState<{ question: string; token: string } | null>(null);
   const [captchaAnswer, setCaptchaAnswer] = useState("");
   const [dragging, setDragging] = useState(false);
@@ -148,7 +147,7 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
       const res = await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...q, files: paths, captchaToken: challenge?.token, captchaAnswer, formStartedAt: startedAt.current }),
+        body: JSON.stringify({ ...q, files: paths, captchaToken: challenge?.token, captchaAnswer }),
       });
       if (!res.ok) throw new Error("submit");
       setStatus("done");

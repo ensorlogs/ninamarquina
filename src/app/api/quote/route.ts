@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { humanPace, verifyChallenge } from "@/lib/captcha";
+import { verifyChallenge } from "@/lib/captcha";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
 import { formatLocation, type QuoteInput, validateQuote } from "@/lib/quote";
 import { site } from "@/lib/site";
@@ -12,13 +12,12 @@ export async function POST(request: Request) {
   const q = (await request.json().catch(() => ({}))) as Partial<QuoteInput> & {
     captchaToken?: string;
     captchaAnswer?: string;
-    formStartedAt?: number;
   };
   if (q.company) return NextResponse.json({ ok: true });
   if (!rateLimit(`quote:${clientIp(request)}`, 4)) {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
-  if (!humanPace(q.formStartedAt) || !verifyChallenge(q.captchaToken, q.captchaAnswer)) {
+  if (!verifyChallenge(q.captchaToken, q.captchaAnswer)) {
     return NextResponse.json({ error: "captcha" }, { status: 400 });
   }
 
