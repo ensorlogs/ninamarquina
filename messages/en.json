@@ -110,7 +110,8 @@
     "quote": "Get a quote"
   },
   "footer": {
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "madeBy": "Made with love by"
   },
   "whatsapp": {
     "label": "Message us on WhatsApp"

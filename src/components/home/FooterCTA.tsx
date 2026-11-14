@@ -60,6 +60,12 @@ export async function FooterCTA() {
           <p className="mt-6 text-[11px] text-ivory/45">
             © {new Date().getFullYear()} Nina Marquina. {t("footer.rights")}
           </p>
+          <p className="mt-1.5 text-[11px] text-ivory/45">
+            {t("footer.madeBy")}{" "}
+            <a href="https://ensorlogs.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-ivory/70">
+              Ensorlogs
+            </a>
+          </p>
         </div>
       </div>
     </footer>

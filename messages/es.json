@@ -110,7 +110,8 @@
     "quote": "Cotiza tu proyecto"
   },
   "footer": {
-    "rights": "Todos los derechos reservados."
+    "rights": "Todos los derechos reservados.",
+    "madeBy": "Hecho con amor por"
   },
   "whatsapp": {
     "label": "Escríbenos por WhatsApp"
