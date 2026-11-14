@@ -382,5 +382,18 @@
     "body": "Procesos, renders y obra en tiempo real. Únete a la comunidad de @ninamarquina.arq.",
     "follow": "Seguir en Instagram",
     "post": "Ver publicación en Instagram"
+  },
+  "chat": {
+    "open": "Pregúntanos",
+    "subtitle": "Asistente virtual · responde al momento",
+    "welcome": "Hola, soy la asistente de Nina Marquina. Cuéntame qué tienes en mente — una reforma, un proyecto, ideas — y te oriento.",
+    "placeholder": "Escribe tu mensaje…",
+    "send": "Enviar",
+    "typing": "Escribiendo…",
+    "error": "No pude responder ahora. Intenta de nuevo o escríbenos por WhatsApp.",
+    "close": "Cerrar",
+    "s1": "Quiero hacer una reforma",
+    "s2": "¿Dónde trabajan?",
+    "s3": "Quiero un presupuesto"
   }
 }

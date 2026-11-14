@@ -382,5 +382,18 @@
     "body": "Process, renders and work in progress. Join the @ninamarquina.arq community.",
     "follow": "Follow on Instagram",
     "post": "View post on Instagram"
+  },
+  "chat": {
+    "open": "Ask us",
+    "subtitle": "Virtual assistant · replies instantly",
+    "welcome": "Hi, I'm Nina Marquina's assistant. Tell me what's on your mind — a renovation, a project, ideas — and I'll guide you.",
+    "placeholder": "Type your message…",
+    "send": "Send",
+    "typing": "Typing…",
+    "error": "I couldn't reply right now. Try again or reach us on WhatsApp.",
+    "close": "Close",
+    "s1": "I want to renovate",
+    "s2": "Where do you work?",
+    "s3": "I want a quote"
   }
 }
