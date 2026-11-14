@@ -47,6 +47,9 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
   const [showError, setShowError] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const startedAt = useRef(Date.now());
+  const [challenge, setChallenge] = useState<{ question: string; token: string } | null>(null);
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
   const [dragging, setDragging] = useState(false);
   const [q, setQ] = useState<QuoteInput>({
     locale,
@@ -86,11 +89,18 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
     true,
     !!q.budget && !!q.timeline,
     true,
-    q.name.trim().length > 1 && EMAIL_RE.test(q.email) && q.phone.replace(/\D/g, "").length >= 7 && q.consent,
+    q.name.trim().length > 1 && EMAIL_RE.test(q.email) && q.phone.replace(/\D/g, "").length >= 7 && q.consent && captchaAnswer.trim() !== "",
   ];
+
+  const loadCaptcha = () =>
+    fetch("/api/quote/captcha")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((c) => setChallenge(c))
+      .catch(() => {});
 
   const goTo = (n: number) => {
     setShowError(false);
+    if (n === STEPS.length - 1 && !challenge) loadCaptcha();
     setStep(n);
     top.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -138,12 +148,14 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
       const res = await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...q, files: paths }),
+        body: JSON.stringify({ ...q, files: paths, captchaToken: challenge?.token, captchaAnswer, formStartedAt: startedAt.current }),
       });
       if (!res.ok) throw new Error("submit");
       setStatus("done");
       top.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     } catch (e) {
+      setCaptchaAnswer("");
+      loadCaptcha();
       setStatus("error");
       setErrorMsg(e instanceof Error && e.message === "upload" ? t("error.upload") : t("error.generic", { email: site.email }));
     }
@@ -407,6 +419,12 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
                 <input type="checkbox" checked={q.newsletter} onChange={(e) => set("newsletter", e.target.checked)} className="mt-1 h-4 w-4 accent-clay" />
                 {t("fields.newsletter")}
               </label>
+              <Field label={t("fields.captcha")}>
+                <div className="flex max-w-xs items-center gap-4">
+                  <span className="shrink-0 font-serif text-[20px]">{challenge?.question ?? "…"}</span>
+                  <input className="input" inputMode="numeric" autoComplete="off" value={captchaAnswer} onChange={(e) => setCaptchaAnswer(e.target.value.replace(/[^\d]/g, "").slice(0, 2))} />
+                </div>
+              </Field>
             </div>
           )}
         </div>
