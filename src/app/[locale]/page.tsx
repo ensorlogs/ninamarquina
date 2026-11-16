@@ -22,6 +22,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     "@context": "https://schema.org",
     "@type": ["Architect", "GeneralContractor"],
     name: "Nina Marquina — Architecture & Interiors",
+    alternateName: ["Nina Marquina Arquitecta", "Estudio Nina Marquina", "Nina Marquina Architecture"],
+    geo: { "@type": "GeoCoordinates", latitude: 10.4272, longitude: -66.8164 },
     description: t("description"),
     url: `${site.url}/${locale}`,
     image: `${site.url}/images/hero.jpg`,
@@ -54,9 +56,20 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     founder: { "@type": "Person", name: "Stephany Marquina", jobTitle: "Arquitecta", image: `${site.url}/images/stephany.jpg` },
   };
 
+  const webSiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Nina Marquina",
+    alternateName: "Nina Marquina Arquitecta",
+    url: site.url,
+    inLanguage: ["es", "en"],
+    publisher: { "@type": "Organization", name: "Nina Marquina", url: site.url },
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteLd) }} />
       <main>
         <Hero />
         <Philosophy />

@@ -22,8 +22,8 @@ type PageMeta = {
   locales?: readonly string[];
 };
 
-export function pageMetadata({ locale, path, title, description, image, type = "website", locales }: PageMeta): Metadata {
-  const images = image ? [image] : undefined;
+export function pageMetadata({ locale, path, title, description, image = "/images/hero.jpg", type = "website", locales }: PageMeta): Metadata {
+  const images = [image];
   return {
     title: { absolute: title },
     description,
